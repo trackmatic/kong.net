@@ -38,7 +38,7 @@ Once you have retrieved a resource you may want to configure the plugins for it.
 
 ### Creating a Plugin
 
-Once you have a instance of the plugins request factory you can start creating plugins. The code snippet below illustrates how this can be done
+Once you have an instance of the plugins request factory you can start creating plugins. The code snippet below illustrates how this can be done
 
     var plugin = new RateLimitingPlugin
     {
@@ -50,4 +50,4 @@ Once you have a instance of the plugins request factory you can start creating p
         }
     };
 
-    client.Plugins(api).Post(plugin);
+    plugins.Post(plugin);
