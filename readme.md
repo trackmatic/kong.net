@@ -8,15 +8,15 @@
 
 ## Modular Request Factories
 
-Apis, Consumers and Plugins are exposed via extension methods on IKongClient. This provides a mechnism to extend the client libray with your own plugins. We will cover extending the library in more detail later in this document.
+Apis, Consumers and Plugins are exposed via extension methods on IKongClient. This provides a mechanism to extend the client libray with your own plugins. We will cover extending the library in more detail later in this document.
 
-You will need a requets factory in order to start talking to the Kong API. You can get an instance of a request for via the client.Apis(), client.Consumers() and client.Plugins(api) extension methods
+You will need a requets factory in order to start talking to the Kong API. To start lets get a request factory for the apis
 
     var apis = client.Apis();
 
-The code above will return a request factory for the Api resource
+The code above will return a request factory for the Api resource which can be used to issue requests to the Kong API
 
-Each request factory exposes the followng methods:
+A request factory exposes the followng methods:
 
 1. List - Allows you to search the resource
 2. Get - Allows you to retrieve a since resource based on the resource id
@@ -26,7 +26,7 @@ Each request factory exposes the followng methods:
 
 ## Retrieve an api
 
-To retrieve a single api you can use the Get method on the ApiRequestFactory
+To retrieve a single api you can use the Get method on the ApiRequestFactory retrieved above
 
     var api = apis.Get("apiId");
 
