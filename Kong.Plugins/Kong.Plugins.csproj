@@ -68,6 +68,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InternalPluginRequestFactory.cs" />
+    <Compile Include="IPluginRequestFactory.cs" />
     <Compile Include="KongClientExtensions.cs" />
     <Compile Include="Model\AclPlugin.cs" />
     <Compile Include="Model\AclPluginConfig.cs" />
