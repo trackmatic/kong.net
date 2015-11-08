@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{22DA55A5-8CE9-4425-B877-2B4BB9CCEDB3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kong</RootNamespace>
+    <AssemblyName>Kong</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Slumber, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Slumber.0.0.4\lib\net45\Slumber.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Slumber.Http, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Slumber.0.0.4\lib\net45\Slumber.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Slumber.Json, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Slumber.0.0.4\lib\net45\Slumber.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Slumber.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Slumber.0.0.4\lib\net45\Slumber.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Slumber.Nuget, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Slumber.0.0.4\lib\net45\Slumber.Nuget.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Slumber.Xml, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Slumber.0.0.4\lib\net45\Slumber.Xml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Apis.cs" />
+    <Compile Include="Consumers.cs" />
+    <Compile Include="IKongClient.cs" />
+    <Compile Include="IKongRequestFactory.cs" />
+    <Compile Include="KongClient.cs" />
+    <Compile Include="Serialization\ConfigurationExtensions.cs" />
+    <Compile Include="Serialization\DefaultPluginFactory.cs" />
+    <Compile Include="Serialization\KongSerializerFactory.cs" />
+    <Compile Include="Serialization\IPluginFactory.cs" />
+    <Compile Include="Serialization\PluginConverter.cs" />
+    <Compile Include="Model\AclPlugin.cs" />
+    <Compile Include="Model\AclPluginConfig.cs" />
+    <Compile Include="Model\Api.cs" />
+    <Compile Include="Model\Consumer.cs" />
+    <Compile Include="Model\CorsPlugin.cs" />
+    <Compile Include="Model\CorsPluginConfig.cs" />
+    <Compile Include="Model\IKongCollection.cs" />
+    <Compile Include="Model\IpRestrictionPlugin.cs" />
+    <Compile Include="Model\IpRestrictionPluginconfig.cs" />
+    <Compile Include="Model\KongCollection.cs" />
+    <Compile Include="Model\Plugin.cs" />
+    <Compile Include="Model\RateLimitingPlugin.cs" />
+    <Compile Include="Model\RateLimitingPluginConfig.cs" />
+    <Compile Include="Model\RequestSizeLimitingPlugin.cs" />
+    <Compile Include="Model\RequestSizeLimitingPluginConfig.cs" />
+    <Compile Include="Model\RequestTransformerPlugin.cs" />
+    <Compile Include="Model\RequestTransformerPluginConfig.cs" />
+    <Compile Include="Model\ResponseTransformerPlugin.cs" />
+    <Compile Include="Model\ResponseTransformerPluginConfig.cs" />
+    <Compile Include="Model\SslPlugin.cs" />
+    <Compile Include="Model\SslPluginConfig.cs" />
+    <Compile Include="Model\TcpLogPlugin.cs" />
+    <Compile Include="Model\TcpLogPluginConfig.cs" />
+    <Compile Include="Model\UdpLogPlugin.cs" />
+    <Compile Include="Model\UdpLogPluginConfig.cs" />
+    <Compile Include="Plugins.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,13 @@
+*/**/.suo
+*/**/bin
+*/**/obj
+*.suo
+*/bin
+*/obj
+/packages
+TestResult.xml
+.vs
+*/**/*.user
+*.user
+bin
+obj
