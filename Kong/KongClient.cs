@@ -1,4 +1,8 @@
-﻿using Kong.Serialization;
+﻿using System;
+using System.Collections.Generic;
+using Kong.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Slumber;
 using Slumber.Http;
 using Slumber.Logging;
@@ -7,18 +11,50 @@ namespace Kong
 {
     public class KongClient : IKongClient
     {
+        private readonly JsonSerializerSettings _settings;
+
+        private readonly Dictionary<Type, IKongRequestFactory> _factories;
+
+        private readonly ISlumberClient _slumber;
+        
         public KongClient(string baseUri)
         {
-            var slumber = new SlumberClient(baseUri, confgure =>
+            _factories = new Dictionary<Type, IKongRequestFactory>();
+            _settings = new JsonSerializerSettings
             {
-                confgure.UseKongSerialization().UseHttp(http => http.ApplicationJson()).UseConsoleLogger();
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                NullValueHandling = NullValueHandling.Ignore
+            };
+            _settings.Converters.Add(new IsoDateTimeConverter());
+            _slumber = new SlumberClient(baseUri, confgure =>
+            {
+                confgure.UseKongSerialization(_settings).UseHttp(http => http.ApplicationJson()).UseConsoleLogger();
             });
-            Apis = new Apis(slumber);
-            Consumers = new Consumers(slumber);
+        }
+        
+        public void Register(IKongRequestFactory factory)
+        {
+            if (_factories.ContainsKey(factory.GetType()))
+            {
+                return;
+            }
+            _factories.Add(factory.GetType(), factory);
+            factory.Configure(_settings);
         }
 
-        public Apis Apis { get; }
+        public T Get<T>() where T : IKongRequestFactory
+        {
+            var key = typeof (T);
+            if (!_factories.ContainsKey(key))
+            {
+                return default(T);
+            }
+            return (T)_factories[key];
+        }
 
-        public Consumers Consumers { get; }
+        public IRestResponse<T> Execute<T>(IRestRequest<T> request)
+        {
+            return _slumber.Execute(request);
+        }
     }
 }

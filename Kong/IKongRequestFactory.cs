@@ -1,18 +1,9 @@
-﻿using System.Collections.Generic;
-using Kong.Model;
+﻿using Newtonsoft.Json;
 
 namespace Kong
 {
-    public interface IKongRequestFactory<T>
+    public interface IKongRequestFactory
     {
-        IKongCollection<T> List(IDictionary<string, object> parameters);
-
-        T Get(string id);
-
-        void Delete(string id);
-
-        T Post(T data);
-
-        T Patch(T data);
+        void Configure(JsonSerializerSettings settings);
     }
 }

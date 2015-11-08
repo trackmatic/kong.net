@@ -1,9 +1,9 @@
 ﻿using System;
-using Kong.Model;
+using Kong.Plugins.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Kong.Serialization
+namespace Kong.Plugins.Serialization
 {
     public class PluginConverter : JsonConverter
     {

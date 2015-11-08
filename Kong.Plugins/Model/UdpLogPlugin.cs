@@ -1,6 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using Kong.Model;
+using Newtonsoft.Json;
 
-namespace Kong.Model
+namespace Kong.Plugins.Model
 {
     public class UdpLogPlugin : Plugin
     {

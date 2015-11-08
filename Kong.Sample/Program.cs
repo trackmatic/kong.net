@@ -1,4 +1,5 @@
 ﻿using System;
+using Kong.Plugins;
 
 namespace Kong.Sample
 {
@@ -6,16 +7,19 @@ namespace Kong.Sample
     {
         static void Main(string[] args)
         {
-            var client = new KongClient("http://10.10.0.76:8001");
+            var client = new KongClient("http://kongserver:8001");
 
-            var apis = client.Apis.List();
+            var apis = client.Apis().List();
 
             foreach (var api in apis.Data)
             {
                 api.PreserveHost = true;
 
-                client.Apis.Patch(api);
+                client.Apis().Patch(api);
+
+                var plugins = client.Plugins(api).List();
             }
+
 
             Console.WriteLine("Done");
 

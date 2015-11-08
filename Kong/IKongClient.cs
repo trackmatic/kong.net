@@ -1,9 +1,13 @@
-﻿namespace Kong
+﻿using Slumber;
+
+namespace Kong
 {
     public interface IKongClient
     {
-        Apis Apis { get; }
+        void Register(IKongRequestFactory factory);
 
-        Consumers Consumers { get; }
+        T Get<T>() where T : IKongRequestFactory;
+
+        IRestResponse<T> Execute<T>(IRestRequest<T> request);
     }
 }

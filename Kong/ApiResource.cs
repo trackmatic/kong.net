@@ -1,16 +1,13 @@
 ﻿using System.Collections.Generic;
 using Kong.Model;
-using Slumber;
 
 namespace Kong
 {
-    public class Apis : ResourceBase<Api>
+    public class ApiResource : ResourceBase<Api>
     {
-        private readonly ISlumberClient _client;
-
-        public Apis(ISlumberClient client) : base(client, "apis")
+        public ApiResource(IKongClient client) : base(client, "apis")
         {
-            _client = client;
+            client.Register(this);
         }
 
         public IKongCollection<Api> List(string name = null, string requestHost = null, string requestPath = null, string upstreamUrl = null, int size = 100, int offset = 0)
@@ -49,11 +46,6 @@ namespace Kong
         public override Api Post(Api data)
         {
             return Execute(CreatePost<Api>(data));
-        }
-
-        public Plugins Plugins(Api api)
-        {
-            return new Plugins(_client, api);
         }
     }
 }

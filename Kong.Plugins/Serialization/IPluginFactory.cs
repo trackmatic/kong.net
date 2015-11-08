@@ -1,7 +1,7 @@
-﻿using Kong.Model;
+﻿using Kong.Plugins.Model;
 using Newtonsoft.Json.Linq;
 
-namespace Kong.Serialization
+namespace Kong.Plugins.Serialization
 {
     public interface IPluginFactory
     {

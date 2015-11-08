@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kong", "Kong\Kong.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kong.Sample", "Kong.Sample\Kong.Sample.csproj", "{E9640191-6FD0-45D5-96BD-FA6DAF014F28}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kong.Plugins", "Kong.Plugins\Kong.Plugins.csproj", "{73F29CDE-C31F-4956-B9E5-C6676F60620B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E9640191-6FD0-45D5-96BD-FA6DAF014F28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9640191-6FD0-45D5-96BD-FA6DAF014F28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9640191-6FD0-45D5-96BD-FA6DAF014F28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73F29CDE-C31F-4956-B9E5-C6676F60620B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73F29CDE-C31F-4956-B9E5-C6676F60620B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73F29CDE-C31F-4956-B9E5-C6676F60620B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73F29CDE-C31F-4956-B9E5-C6676F60620B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

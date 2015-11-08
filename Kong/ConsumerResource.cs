@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using Kong.Model;
-using Slumber;
 
 namespace Kong
 {
-    public class Consumers : ResourceBase<Consumer>
+    public class ConsumerResource : ResourceBase<Consumer>
     {
-        public Consumers(ISlumberClient client) : base(client, "consumers")
+        public ConsumerResource(IKongClient client) : base(client, "consumers")
         {
+            client.Register(this);
         }
 
         public IKongCollection<Consumer> List(string username = null)

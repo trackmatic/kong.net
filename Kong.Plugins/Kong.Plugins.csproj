@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E9640191-6FD0-45D5-96BD-FA6DAF014F28}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{73F29CDE-C31F-4956-B9E5-C6676F60620B}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Kong.Sample</RootNamespace>
-    <AssemblyName>Kong.Sample</AssemblyName>
+    <RootNamespace>Kong.Plugins</RootNamespace>
+    <AssemblyName>Kong.Plugins</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -71,22 +68,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="KongClientExtensions.cs" />
+    <Compile Include="Model\AclPlugin.cs" />
+    <Compile Include="Model\AclPluginConfig.cs" />
+    <Compile Include="Model\CorsPlugin.cs" />
+    <Compile Include="Model\CorsPluginConfig.cs" />
+    <Compile Include="Model\IpRestrictionPlugin.cs" />
+    <Compile Include="Model\IpRestrictionPluginconfig.cs" />
+    <Compile Include="Model\Plugin.cs" />
+    <Compile Include="Model\RateLimitingPlugin.cs" />
+    <Compile Include="Model\RateLimitingPluginConfig.cs" />
+    <Compile Include="Model\RequestSizeLimitingPlugin.cs" />
+    <Compile Include="Model\RequestSizeLimitingPluginConfig.cs" />
+    <Compile Include="Model\RequestTransformerPlugin.cs" />
+    <Compile Include="Model\RequestTransformerPluginConfig.cs" />
+    <Compile Include="Model\ResponseTransformerPlugin.cs" />
+    <Compile Include="Model\ResponseTransformerPluginConfig.cs" />
+    <Compile Include="Model\SslPlugin.cs" />
+    <Compile Include="Model\SslPluginConfig.cs" />
+    <Compile Include="Model\TcpLogPlugin.cs" />
+    <Compile Include="Model\TcpLogPluginConfig.cs" />
+    <Compile Include="Model\UdpLogPlugin.cs" />
+    <Compile Include="Model\UdpLogPluginConfig.cs" />
+    <Compile Include="PluginResource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization\DefaultPluginFactory.cs" />
+    <Compile Include="Serialization\IPluginFactory.cs" />
+    <Compile Include="Serialization\PluginConverter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Kong.Plugins\Kong.Plugins.csproj">
-      <Project>{73f29cde-c31f-4956-b9e5-c6676f60620b}</Project>
-      <Name>Kong.Plugins</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Kong\Kong.csproj">
       <Project>{22da55a5-8ce9-4425-b877-2b4bb9ccedb3}</Project>
       <Name>Kong</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

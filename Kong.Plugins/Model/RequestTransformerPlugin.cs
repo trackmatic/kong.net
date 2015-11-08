@@ -1,13 +1,13 @@
 ﻿using Newtonsoft.Json;
 
-namespace Kong.Model
+namespace Kong.Plugins.Model
 {
-    public class RateLimitingPlugin : Plugin
+    public class RequestTransformerPlugin : Plugin
     {
         [JsonProperty("consumer_id")]
         public string ConsumerId { get; set; }
 
         [JsonProperty("config")]
-        public RateLimitingPluginConfig Config { get; set; }
+        public RequestSizeLimitingPluginConfig Config { get; set; }
     }
 }

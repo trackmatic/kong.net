@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Kong.Model;
+using Newtonsoft.Json;
 using Slumber;
 using Slumber.Http;
 
@@ -9,9 +10,9 @@ namespace Kong
     {
         private readonly string _name;
 
-        private readonly ISlumberClient _client;
+        private readonly IKongClient _client;
 
-        protected ResourceBase(ISlumberClient client, string name)
+        protected ResourceBase(IKongClient client, string name)
         {
             _client = client;
             _name = name;
@@ -67,6 +68,11 @@ namespace Kong
             }
             request.Data = data;
             return request;
+        }
+
+        public virtual void Configure(JsonSerializerSettings settings)
+        {
+            
         }
     }
 }

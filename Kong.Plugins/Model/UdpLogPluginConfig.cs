@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace Kong.Model
+namespace Kong.Plugins.Model
 {
-    public class TcpLogPluginConfig
+    public class UdpLogPluginConfig
     {
         [JsonProperty("host")]
         public string Host { get; set; }
@@ -12,8 +12,5 @@ namespace Kong.Model
 
         [JsonProperty("timeout")]
         public long Timeout { get; set; }
-
-        [JsonProperty("keepalive")]
-        public long KeepAlive { get; set; }
     }
 }

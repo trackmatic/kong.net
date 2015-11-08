@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Kong.Model
+namespace Kong.Plugins.Model
 {
     public class RateLimitingPluginConfig
     {

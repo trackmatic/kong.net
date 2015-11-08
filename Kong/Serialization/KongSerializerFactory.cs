@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using Kong.Model;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+﻿using Newtonsoft.Json;
 using Slmber.Json;
 using Slumber;
 
@@ -9,39 +6,26 @@ namespace Kong.Serialization
 {
     public class KongSerializerFactory : ISerializationFactory
     {
-        private static readonly JsonSerializerSettings Settings;
+        private readonly JsonSerializerSettings _settings;
 
-        static KongSerializerFactory()
+        public KongSerializerFactory(JsonSerializerSettings settings)
         {
-            var factory = CreatePluginFactory();
-            Settings = new JsonSerializerSettings
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                NullValueHandling = NullValueHandling.Ignore
-            };
-            Settings.Converters.Add(new PluginConverter(factory));
-            Settings.Converters.Add(new IsoDateTimeConverter());
+            _settings = settings;
         }
 
-        static IPluginFactory CreatePluginFactory()
+        public void Register(JsonConverter converter)
         {
-            var types = typeof(KongSerializerFactory).Assembly.GetTypes().Where(x => x.BaseType == typeof(Plugin));
-            var factory = new DefaultPluginFactory();
-            foreach (var type in types)
-            {
-                factory.Register(Plugin.GetNameFromType(type), type);
-            }
-            return factory;
+            _settings.Converters.Add(converter);
         }
 
         public IDeserializer CreateDeserializer()
         {
-            return new DynamicJsonDeserializer(Settings);
+            return new DynamicJsonDeserializer(_settings);
         }
 
         public ISerializer CreateSerializer()
         {
-            return new DynamicJsonSerializer(Settings);
+            return new DynamicJsonSerializer(_settings);
         }
     }
 }
