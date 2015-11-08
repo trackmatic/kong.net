@@ -28,7 +28,7 @@ namespace Kong
             _settings.Converters.Add(new IsoDateTimeConverter());
             _slumber = new SlumberClient(baseUri, confgure =>
             {
-                confgure.UseKongSerialization(_settings).UseHttp(http => http.ApplicationJson()).UseConsoleLogger();
+                confgure.UseKongSerialization(_settings).UseHttp(http => http.ApplicationJson());
             });
         }
         

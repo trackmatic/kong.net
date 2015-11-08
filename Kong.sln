@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kong.Sample", "Kong.Sample\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kong.Plugins", "Kong.Plugins\Kong.Plugins.csproj", "{73F29CDE-C31F-4956-B9E5-C6676F60620B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kong.NuGet", "Kong.NuGet\Kong.NuGet.csproj", "{867BF611-3DC5-4F1C-8C19-06A8B6D7EAA6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{73F29CDE-C31F-4956-B9E5-C6676F60620B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73F29CDE-C31F-4956-B9E5-C6676F60620B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73F29CDE-C31F-4956-B9E5-C6676F60620B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{867BF611-3DC5-4F1C-8C19-06A8B6D7EAA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{867BF611-3DC5-4F1C-8C19-06A8B6D7EAA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{867BF611-3DC5-4F1C-8C19-06A8B6D7EAA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{867BF611-3DC5-4F1C-8C19-06A8B6D7EAA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

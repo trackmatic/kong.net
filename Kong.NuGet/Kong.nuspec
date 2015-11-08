@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Kong</id>
+    <version>0.0.3</version>
+    <title>Kong Api Gateway Rest Client</title>
+    <authors>Trackmatic Solutions (Pty) Ltd</authors>
+    <owners>Trackmatic Solutions (Pty) Ltd</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A rest client library for the kong api gateway</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>Kong</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="7.0.1" />
+      <dependency id="Slumber" version="0.0.4" />
+    </dependencies>
+  </metadata>
+</package>

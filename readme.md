@@ -2,6 +2,10 @@
 
 .Net Rest Client for https://getkong.org/
 
+## Install With NuGet
+
+    install-package Kong
+
 ## Create a IKongClient
 
     var client = new KongClient("http://kongserver:8001");
