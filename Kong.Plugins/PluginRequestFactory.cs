@@ -7,10 +7,11 @@ using Newtonsoft.Json;
 
 namespace Kong.Plugins
 {
-    public class PluginResource : ResourceBase<Plugin>
+    public class PluginRequestFactory : RequestFactory<Plugin>
     {
-        public PluginResource(IKongClient client, Api api) : base(client, $"apis/{api.Id}/plugins")
+        public PluginRequestFactory(IKongClient client, Api api) : base(client, $"apis/{api.Id}/plugins")
         {
+            Id = $"{GetType().Name}.{api.Id}";
             client.Register(this);
         }
 
@@ -49,6 +50,8 @@ namespace Kong.Plugins
         {
             return Execute(CreatePatch<Plugin>(data.Id, data));
         }
+
+        public override string Id { get; }
 
         public override void Configure(JsonSerializerSettings settings)
         {

@@ -2,14 +2,14 @@
 {
     public static class KongClientExtensions
     {
-        public static ApiResource Apis(this IKongClient client)
+        public static ApiRequestFactory Apis(this IKongClient client)
         {
-            return client.Get<ApiResource>() ?? new ApiResource(client);
+            return client.Get<ApiRequestFactory>() ?? new ApiRequestFactory(client);
         }
 
-        public static ConsumerResource Consumers(this IKongClient client)
+        public static ConsumerRequestFactory Consumers(this IKongClient client)
         {
-            return client.Get<ConsumerResource>() ?? new ConsumerResource(client);
+            return client.Get<ConsumerRequestFactory>() ?? new ConsumerRequestFactory(client);
         }
     }
 }

@@ -68,8 +68,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiResource.cs" />
-    <Compile Include="ConsumerResource.cs" />
+    <Compile Include="ApiRequestFactory.cs" />
+    <Compile Include="ConsumerRequestFactory.cs" />
     <Compile Include="KongClientExtensions.cs" />
     <Compile Include="IKongClient.cs" />
     <Compile Include="IKongRequestFactory%27.cs" />
@@ -82,7 +82,7 @@
     <Compile Include="Model\IKongCollection.cs" />
     <Compile Include="Model\KongCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResourceBase.cs" />
+    <Compile Include="RequestFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

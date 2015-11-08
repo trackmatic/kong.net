@@ -3,9 +3,9 @@ using Kong.Model;
 
 namespace Kong
 {
-    public class ApiResource : ResourceBase<Api>
+    public class ApiRequestFactory : RequestFactory<Api>
     {
-        public ApiResource(IKongClient client) : base(client, "apis")
+        public ApiRequestFactory(IKongClient client) : base(client, "apis")
         {
             client.Register(this);
         }
@@ -42,6 +42,8 @@ namespace Kong
         {
             return Execute(CreatePatch<Api>(data.Id, data));
         }
+
+        public override string Id => GetType().Name;
 
         public override Api Post(Api data)
         {

@@ -3,9 +3,9 @@ using Kong.Model;
 
 namespace Kong
 {
-    public class ConsumerResource : ResourceBase<Consumer>
+    public class ConsumerRequestFactory : RequestFactory<Consumer>
     {
-        public ConsumerResource(IKongClient client) : base(client, "consumers")
+        public ConsumerRequestFactory(IKongClient client) : base(client, "consumers")
         {
             client.Register(this);
         }
@@ -42,5 +42,7 @@ namespace Kong
         {
             return Execute(CreatePatch<Consumer>(data.Id, data));
         }
+
+        public override string Id => GetType().Name;
     }
 }

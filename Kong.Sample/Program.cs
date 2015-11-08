@@ -1,5 +1,6 @@
 ﻿using System;
 using Kong.Plugins;
+using Kong.Plugins.Model;
 
 namespace Kong.Sample
 {
@@ -7,7 +8,7 @@ namespace Kong.Sample
     {
         static void Main(string[] args)
         {
-            var client = new KongClient("http://kongserver:8001");
+            var client = new KongClient("http://10.10.0.76:8001");
 
             var apis = client.Apis().List();
 
@@ -16,8 +17,20 @@ namespace Kong.Sample
                 api.PreserveHost = true;
 
                 client.Apis().Patch(api);
+                
+                var plugin = new RateLimitingPlugin
+                {
+                    ApiId = api.Id,
+                    Enabled = true,
+                    Config = new RateLimitingPluginConfig
+                    {
+                        Second = 10
+                    }
+                };
 
-                var plugins = client.Plugins(api).List();
+                client.Plugins(api).Post(plugin);
+
+
             }
 
 

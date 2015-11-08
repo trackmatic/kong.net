@@ -14,5 +14,7 @@ namespace Kong
         T Post(T data);
 
         T Patch(T data);
+
+        string Id { get; }
     }
 }
