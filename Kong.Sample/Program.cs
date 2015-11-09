@@ -1,4 +1,5 @@
 ﻿using System;
+using Kong.Model;
 using Slumber.Logging;
 
 namespace Kong.Sample
@@ -15,7 +16,12 @@ namespace Kong.Sample
 
             var consumers = client.Consumers();
 
-            var apis = client.Apis().List(requestPath: "/api/v1/refresh");
+
+            var consumer = consumers.Get("Ross");
+
+            consumer.CustomId = "1234";
+
+            consumers.Patch(consumer);
 
             
 
