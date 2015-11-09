@@ -28,5 +28,8 @@ namespace Kong.Model
 
         [JsonProperty("request_path")]
         public string RequestPath { get; set; }
+
+        [JsonProperty("enabled")]
+        public bool Enabled { get; set; }
     }
 }

@@ -59,6 +59,14 @@ namespace Kong.Plugins
             }));
         }
 
+        public override Plugin Put(Plugin data)
+        {
+            return Execute(CreatePut<Plugin>(data, new Dictionary<string, object>
+            {
+                {"apiId", _api.Id}
+            }));
+        }
+
         public override Plugin Patch(Plugin data)
         {
             return Execute(CreatePatch<Plugin>(data.Id, data, new Dictionary<string, object>

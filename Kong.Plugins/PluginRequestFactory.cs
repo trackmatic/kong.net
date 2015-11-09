@@ -51,6 +51,11 @@ namespace Kong.Plugins
             return Execute(CreatePost<Plugin>(data));
         }
 
+        public override Plugin Put(Plugin data)
+        {
+            return Execute(CreatePut<Plugin>(data));
+        }
+
         public override Plugin Patch(Plugin data)
         {
             return Execute(CreatePatch<Plugin>(data.Id, data));

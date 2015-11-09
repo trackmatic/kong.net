@@ -38,6 +38,11 @@ namespace Kong
             return Execute(CreatePost<Consumer>(data));
         }
 
+        public override Consumer Put(Consumer data)
+        {
+            return Execute(CreatePut<Consumer>(data));
+        }
+
         public override Consumer Patch(Consumer data)
         {
             return Execute(CreatePatch<Consumer>(data.Id, data));

@@ -23,6 +23,8 @@ namespace Kong
             });
         }
 
+        public override string Id => GetType().Name;
+
         public override IKongCollection<Api> List(IDictionary<string, object> parameters)
         {
             return Execute(CreateGet<KongCollection<Api>>(parameters));
@@ -43,11 +45,14 @@ namespace Kong
             return Execute(CreatePatch<Api>(data.Id, data));
         }
 
-        public override string Id => GetType().Name;
-
         public override Api Post(Api data)
         {
             return Execute(CreatePost<Api>(data));
+        }
+
+        public override Api Put(Api data)
+        {
+            return Execute(CreatePut<Api>(data));
         }
     }
 }

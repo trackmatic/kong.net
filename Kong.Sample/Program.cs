@@ -1,4 +1,5 @@
 ﻿using System;
+using Slumber.Logging;
 
 namespace Kong.Sample
 {
@@ -6,9 +7,17 @@ namespace Kong.Sample
     {
         static void Main(string[] args)
         {
-            var client = new KongClient("http://kongserver:8001");
+            var client = new KongClient("http://kongserver:8001", config => config.UseConsoleLogger());
 
-            var apis = client.Apis().List();
+            var status = client.Status();
+
+            var about = client.About();
+
+            var consumers = client.Consumers();
+
+            var apis = client.Apis().List(requestPath: "/api/v1/refresh");
+
+            
 
             Console.WriteLine("Done");
 
