@@ -13,5 +13,10 @@ namespace Kong.Plugins
         {
             return client.Plugins().For(api);
         }
+
+        public static IPluginSchemaRequestFactory Schema(this IKongClient client)
+        {
+            return (client.Get<PluginSchemaRequestFactory>() ?? new PluginSchemaRequestFactory(client));
+        }
     }
 }

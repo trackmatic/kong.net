@@ -25,9 +25,7 @@ namespace Kong
         public abstract void Delete(string id);
 
         public abstract T Patch(T data);
-
-        public abstract string Id { get; }
-
+        
         public abstract T Post(T data);
 
         public abstract T Put(T data);

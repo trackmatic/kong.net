@@ -1,5 +1,6 @@
 ﻿using System;
 using Kong.Model;
+using Kong.Plugins;
 using Slumber.Logging;
 
 namespace Kong.Sample
@@ -16,12 +17,9 @@ namespace Kong.Sample
 
             var consumers = client.Consumers();
 
+            var results = consumers.List(customId: "1234");
 
-            var consumer = consumers.Get("Ross");
-
-            consumer.CustomId = "1234";
-
-            consumers.Patch(consumer);
+            var schema = client.Schema().Get("cors");
 
             
 

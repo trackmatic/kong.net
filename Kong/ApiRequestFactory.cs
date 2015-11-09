@@ -22,9 +22,7 @@ namespace Kong
                 { "offset", offset }
             });
         }
-
-        public override string Id => GetType().Name;
-
+        
         public override IKongCollection<Api> List(IDictionary<string, object> parameters)
         {
             return Execute(CreateGet<KongCollection<Api>>(parameters));

@@ -16,6 +16,7 @@ namespace Kong.Plugins
             _client = client;
             client.Register(this);
         }
+
         public IKongCollection<Plugin> List(string name = null, string consumerId = null, int size = 100, int offset = 0)
         {
             return List(new Dictionary<string, object>
@@ -60,9 +61,7 @@ namespace Kong.Plugins
         {
             return Execute(CreatePatch<Plugin>(data.Id, data));
         }
-
-        public override string Id => GetType().Name;
-
+        
         public override void Configure(JsonSerializerSettings settings)
         {
             var types = GetType().Assembly.GetTypes().Where(x => x.BaseType == typeof(Plugin));

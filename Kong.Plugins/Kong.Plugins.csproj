@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="InternalPluginRequestFactory.cs" />
     <Compile Include="IPluginRequestFactory.cs" />
+    <Compile Include="IPluginSchemaRequestFactory.cs" />
     <Compile Include="KongClientExtensions.cs" />
     <Compile Include="Model\AclPlugin.cs" />
     <Compile Include="Model\AclPluginConfig.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Model\UdpLogPlugin.cs" />
     <Compile Include="Model\UdpLogPluginConfig.cs" />
     <Compile Include="PluginRequestFactory.cs" />
+    <Compile Include="PluginSchemaRequestFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\DefaultPluginFactory.cs" />
     <Compile Include="Serialization\IPluginFactory.cs" />

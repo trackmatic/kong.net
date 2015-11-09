@@ -10,11 +10,12 @@ namespace Kong
             client.Register(this);
         }
 
-        public IKongCollection<Consumer> List(string username = null)
+        public IKongCollection<Consumer> List(string username = null, string customId = null)
         {
             return List(new Dictionary<string, object>
             {
-                {"username", username}
+                {"username", username},
+                {"custom_id", customId}
             });
         }
 
@@ -47,7 +48,5 @@ namespace Kong
         {
             return Execute(CreatePatch<Consumer>(data.Id, data));
         }
-
-        public override string Id => GetType().Name;
     }
 }

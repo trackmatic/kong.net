@@ -74,7 +74,5 @@ namespace Kong.Plugins
                 {"apiId", _api.Id}
             }));
         }
-
-        public override string Id => GetType().Name;
     }
 }
