@@ -6,9 +6,17 @@
 
     install-package Kong
 
-## Create a IKongClient
+## Create a KongClient
 
     var client = new KongClient("http://kongserver:8001");
+
+## About the Node
+
+    var about = client.About()
+
+## Node Status
+
+    var status = client.Status()
 
 ## Modular Request Factories
 
