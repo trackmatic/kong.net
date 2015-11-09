@@ -5,7 +5,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Slumber;
 using Slumber.Http;
-using Slumber.Logging;
 
 namespace Kong
 {
@@ -17,8 +16,13 @@ namespace Kong
 
         private readonly ISlumberClient _slumber;
         
-        public KongClient(string baseUri)
+        public KongClient(string baseUri) : this(baseUri, c => { })
         {
+        }
+
+        public KongClient(string baseUri, Action<ISlumberConfiguration> configure)
+        {
+
             _factories = new Dictionary<Type, IKongRequestFactory>();
             _settings = new JsonSerializerSettings
             {
@@ -26,9 +30,10 @@ namespace Kong
                 NullValueHandling = NullValueHandling.Ignore
             };
             _settings.Converters.Add(new IsoDateTimeConverter());
-            _slumber = new SlumberClient(baseUri, confgure =>
+            _slumber = new SlumberClient(baseUri, c =>
             {
-                confgure.UseKongSerialization(_settings).UseHttp(http => http.ApplicationJson());
+                c.UseKongSerialization(_settings).UseHttp(http => http.ApplicationJson());
+                configure(c);
             });
         }
         
