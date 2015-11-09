@@ -82,4 +82,4 @@ Configure credentials for a consumer
 
     var consumer = client.Consumers().Get("Bob");
     var basicAuth = client.BasicAuth(consumer);
-    basicAuth.CreateCredential("bob", "secret");
+    basicAuth.CreateCredentials("bob", "secret");

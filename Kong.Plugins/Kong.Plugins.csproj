@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KeyAuthRequestFactory.cs" />
     <Compile Include="BasicAuthRequestFactory.cs" />
     <Compile Include="InternalPluginRequestFactory.cs" />
     <Compile Include="IPluginRequestFactory.cs" />
@@ -81,6 +82,8 @@
     <Compile Include="Model\CorsPluginConfig.cs" />
     <Compile Include="Model\IpRestrictionPlugin.cs" />
     <Compile Include="Model\IpRestrictionPluginconfig.cs" />
+    <Compile Include="Model\KeyAuthPlugin.cs" />
+    <Compile Include="Model\KeyAuthPluginConfig.cs" />
     <Compile Include="Model\Plugin.cs" />
     <Compile Include="Model\RateLimitingPlugin.cs" />
     <Compile Include="Model\RateLimitingPluginConfig.cs" />

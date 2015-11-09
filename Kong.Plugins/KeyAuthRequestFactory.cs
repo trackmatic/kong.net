@@ -4,23 +4,23 @@ using Slumber.Http;
 
 namespace Kong.Plugins
 {
-    public class BasicAuthRequestFactory : RequestExecutor
+    public class KeyAuthRequestFactory : RequestExecutor
     {
         private readonly Consumer _consumer;
 
-        internal BasicAuthRequestFactory(IKongClient client, Consumer consumer) : base(client)
+        internal KeyAuthRequestFactory(IKongClient client, Consumer consumer) : base(client)
         {
             _consumer = consumer;
         }
 
-        public void CreateCredentials(string username, string password)
+        public void CreateCredentials(string key)
         {
-            var request = new HttpRestRequest<dynamic>("/consumers/{consumerId}/basic-auth", HttpMethods.Post)
+            var request = new HttpRestRequest<dynamic>("/consumers/{consumerId}/key-auth", HttpMethods.Post)
             {
                 Data = new
                 {
-                    username,
-                    password
+                    key,
+                    consumer_id = _consumer.Id
                 }
             };
             request.AddQueryParameter("consumerId", _consumer.Id);
