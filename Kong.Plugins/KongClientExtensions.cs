@@ -18,5 +18,10 @@ namespace Kong.Plugins
         {
             return (client.Get<PluginSchemaRequestFactory>() ?? new PluginSchemaRequestFactory(client));
         }
+
+        public static BasicAuthRequestFactory BasicAuth(this IKongClient client, Consumer consumer)
+        {
+            return new BasicAuthRequestFactory(client, consumer);
+        }
     }
 }

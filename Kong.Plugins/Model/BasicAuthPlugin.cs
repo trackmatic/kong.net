@@ -2,9 +2,9 @@
 
 namespace Kong.Plugins.Model
 {
-    public class AclPlugin : Plugin
+    public class BasicAuthPlugin : Plugin
     {
         [JsonProperty("config")]
-        public AclPluginConfig Config { get; set; }
+        public BasicAuthPluginConfig Config { get; set; }
     }
 }

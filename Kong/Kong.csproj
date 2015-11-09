@@ -78,6 +78,7 @@
     <Compile Include="Model\About.cs" />
     <Compile Include="Model\AboutPlugins.cs" />
     <Compile Include="Model\Status.cs" />
+    <Compile Include="RequestExecutor.cs" />
     <Compile Include="Serialization\ConfigurationExtensions.cs" />
     <Compile Include="Serialization\KongSerializerFactory.cs" />
     <Compile Include="Model\Api.cs" />

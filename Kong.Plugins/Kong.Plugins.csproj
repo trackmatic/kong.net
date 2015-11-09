@@ -68,12 +68,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasicAuthRequestFactory.cs" />
     <Compile Include="InternalPluginRequestFactory.cs" />
     <Compile Include="IPluginRequestFactory.cs" />
     <Compile Include="IPluginSchemaRequestFactory.cs" />
     <Compile Include="KongClientExtensions.cs" />
     <Compile Include="Model\AclPlugin.cs" />
     <Compile Include="Model\AclPluginConfig.cs" />
+    <Compile Include="Model\BasicAuthPlugin.cs" />
+    <Compile Include="Model\BasicAuthPluginConfig.cs" />
     <Compile Include="Model\CorsPlugin.cs" />
     <Compile Include="Model\CorsPluginConfig.cs" />
     <Compile Include="Model\IpRestrictionPlugin.cs" />

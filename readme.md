@@ -63,3 +63,23 @@ Once you have an instance of the plugins request factory you can start creating 
     };
 
     plugins.Post(plugin);
+
+## Basic Auth
+
+Create the bsaic auth plugin on a selected api
+
+    var plugins = client.Plugins(api);
+    var plugin = new BasicAuthPlugin
+    {
+        Config = new BasicAuthPluginConfig
+        {
+            HideCredentials = false
+        }
+    };
+    plugins.Post(plugin);
+
+Configure credentials for a consumer
+
+    var consumer = client.Consumers().Get("Bob");
+    var basicAuth = client.BasicAuth(consumer);
+    basicAuth.CreateCredential("bob", "secret");

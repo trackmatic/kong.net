@@ -11,6 +11,11 @@ namespace Kong.Plugins.Model
             Name = GetNameFromType(GetType());
         }
 
+        public Plugin(string name)
+        {
+            Name = name;
+        }
+
         [JsonProperty("id")]
         public string Id { get; set; }
 

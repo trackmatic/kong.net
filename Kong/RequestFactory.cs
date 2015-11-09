@@ -6,15 +6,12 @@ using Slumber.Http;
 
 namespace Kong
 {
-    public abstract class RequestFactory<T> : IKongRequestFactory<T>
+    public abstract class RequestFactory<T> : RequestExecutor, IKongRequestFactory<T>
     {
         private readonly string _name;
 
-        private readonly IKongClient _client;
-
-        protected RequestFactory(IKongClient client, string name)
+        protected RequestFactory(IKongClient client, string name) : base(client)
         {
-            _client = client;
             _name = name;
         }
 
@@ -29,12 +26,7 @@ namespace Kong
         public abstract T Post(T data);
 
         public abstract T Put(T data);
-
-        protected TResponse Execute<TResponse>(IRestRequest<TResponse> request)
-        {
-            return _client.Execute(request).Data;
-        }
-        
+       
         protected IRestRequest<IRestResponse> CreateDelete(string id, IDictionary<string, object> parameters = null)
         {
             return CreateRequest<IRestResponse>(HttpMethods.Delete, id, null, parameters);
