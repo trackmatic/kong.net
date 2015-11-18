@@ -1,3 +1,5 @@
+[![NuGet Status](https://img.shields.io/nuget/v/Kong.svg)](https://www.nuget.org/packages/Kong/)
+
 # Kong.Net
 
 .Net Rest Client for https://getkong.org/
