@@ -30,6 +30,6 @@ namespace Kong.Model
         public string RequestPath { get; set; }
 
         [JsonProperty("enabled")]
-        public bool Enabled { get; set; }
+        public bool? Enabled { get; set; }
     }
 }
