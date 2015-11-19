@@ -13,7 +13,12 @@ namespace Kong
 
         protected TResponse Execute<TResponse>(IRestRequest<TResponse> request)
         {
-            return _client.Execute(request).Data;
+            var response = _client.Execute(request);
+            if (response.HasError)
+            {
+                throw response.Exception;
+            }
+            return response.Data;
         }
     }
 }

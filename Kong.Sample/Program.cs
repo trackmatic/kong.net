@@ -1,4 +1,5 @@
 ﻿using System;
+using Kong.Model;
 using Slumber.Logging;
 
 namespace Kong.Sample

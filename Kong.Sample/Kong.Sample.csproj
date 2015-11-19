@@ -38,27 +38,27 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Slumber, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Slumber.0.0.6\lib\net45\Slumber.dll</HintPath>
+      <HintPath>..\packages\Slumber.0.0.10\lib\net45\Slumber.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Slumber.Http, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Slumber.0.0.6\lib\net45\Slumber.Http.dll</HintPath>
+      <HintPath>..\packages\Slumber.0.0.10\lib\net45\Slumber.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Slumber.Json, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Slumber.0.0.6\lib\net45\Slumber.Json.dll</HintPath>
+      <HintPath>..\packages\Slumber.0.0.10\lib\net45\Slumber.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Slumber.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Slumber.0.0.6\lib\net45\Slumber.Logging.dll</HintPath>
+      <HintPath>..\packages\Slumber.0.0.10\lib\net45\Slumber.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Slumber.Nuget, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Slumber.0.0.6\lib\net45\Slumber.Nuget.dll</HintPath>
+      <HintPath>..\packages\Slumber.0.0.10\lib\net45\Slumber.Nuget.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Slumber.Xml, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Slumber.0.0.6\lib\net45\Slumber.Xml.dll</HintPath>
+      <HintPath>..\packages\Slumber.0.0.10\lib\net45\Slumber.Xml.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
