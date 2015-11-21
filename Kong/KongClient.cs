@@ -32,7 +32,7 @@ namespace Kong
             _settings.Converters.Add(new IsoDateTimeConverter());
             _slumber = new SlumberClient(baseUri, c =>
             {
-                c.UseKongSerialization(_settings).UseHttp(http => http.ApplicationJson());
+                c.UseKongSerialization(_settings).UseHttp(http => http.UseJsonAsDefaultContentType());
                 configure(c);
             });
         }
