@@ -5,11 +5,8 @@ namespace Kong.Plugins
 {
     public class PluginRequestFactory : RequestFactory<Plugin>
     {
-        private readonly IKongClient _client;
-
         public PluginRequestFactory(IKongClient client) : base(client, "plugins")
         {
-            _client = client;
         }
 
         public IKongCollection<Plugin> List(string name = null, string consumerId = null, int size = 100, int offset = 0)
@@ -55,11 +52,6 @@ namespace Kong.Plugins
         public override Plugin Patch(Plugin data)
         {
             return Execute(CreatePatch<Plugin>(data.Id, data));
-        }
-
-        public IPluginRequestFactory For(Api api)
-        {
-            return new InternalPluginRequestFactory(_client, api);
         }
     }
 }

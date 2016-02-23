@@ -11,7 +11,7 @@ namespace Kong.Plugins
 
         public static IPluginRequestFactory Plugins(this IKongClient client, Api api)
         {
-            return client.Plugins().For(api);
+            return new ApiPluginRequestFactory(client, api);
         }
 
         public static IPluginSchemaRequestFactory Schema(this IKongClient client)

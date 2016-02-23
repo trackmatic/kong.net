@@ -71,7 +71,7 @@
     <Compile Include="JwtPluginRequestFactory.cs" />
     <Compile Include="KeyAuthRequestFactory.cs" />
     <Compile Include="BasicAuthRequestFactory.cs" />
-    <Compile Include="InternalPluginRequestFactory.cs" />
+    <Compile Include="ApiPluginRequestFactory.cs" />
     <Compile Include="IPluginRequestFactory.cs" />
     <Compile Include="IPluginSchemaRequestFactory.cs" />
     <Compile Include="KongClientExtensions.cs" />
