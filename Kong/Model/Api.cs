@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Slumber;
 
 namespace Kong.Model
 {

@@ -8,7 +8,6 @@ namespace Kong.Plugins
     {
         public PluginSchemaRequestFactory(IKongClient client) : base(client, "plugins/schema/{name}")
         {
-            client.Register(this);
         }
 
         public override IKongCollection<dynamic> List(IDictionary<string, object> parameters)

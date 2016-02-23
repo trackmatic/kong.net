@@ -7,7 +7,7 @@ namespace Kong
     {
         public ConsumerRequestFactory(IKongClient client) : base(client, "consumers")
         {
-            client.Register(this);
+
         }
 
         public IKongCollection<Consumer> List(string username = null, string customId = null)

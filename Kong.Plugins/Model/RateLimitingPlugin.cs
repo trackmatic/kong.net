@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Kong.Model;
+using Newtonsoft.Json;
 
 namespace Kong.Plugins.Model
 {

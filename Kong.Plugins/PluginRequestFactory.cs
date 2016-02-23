@@ -1,9 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Kong.Model;
-using Kong.Plugins.Model;
-using Kong.Plugins.Serialization;
-using Newtonsoft.Json;
 
 namespace Kong.Plugins
 {
@@ -14,7 +10,6 @@ namespace Kong.Plugins
         public PluginRequestFactory(IKongClient client) : base(client, "plugins")
         {
             _client = client;
-            client.Register(this);
         }
 
         public IKongCollection<Plugin> List(string name = null, string consumerId = null, int size = 100, int offset = 0)
@@ -60,18 +55,6 @@ namespace Kong.Plugins
         public override Plugin Patch(Plugin data)
         {
             return Execute(CreatePatch<Plugin>(data.Id, data));
-        }
-        
-        public override void Configure(JsonSerializerSettings settings)
-        {
-            var types = GetType().Assembly.GetTypes().Where(x => x.BaseType == typeof(Plugin));
-            var factory = new DefaultPluginFactory();
-            foreach (var type in types)
-            {
-                factory.Register(Plugin.GetNameFromType(type), type);
-            }
-            var converter = new PluginConverter(factory);
-            settings.Converters.Add(converter);
         }
 
         public IPluginRequestFactory For(Api api)

@@ -1,6 +1,5 @@
 ﻿using System;
-using Kong.Model;
-using Slumber.Logging;
+using Kong.Plugins;
 
 namespace Kong.Sample
 {
@@ -8,8 +7,8 @@ namespace Kong.Sample
     {
         static void Main(string[] args)
         {
-            var client = new KongClient("http://kongserver:8001", config => config.UseConsoleLogger());
-
+            var client = new KongClient("http://10.10.0.35:8001").RegisterPluginsFrom(typeof(PluginRequestFactory).Assembly);
+            
             Console.WriteLine("Done");
 
             Console.ReadLine();

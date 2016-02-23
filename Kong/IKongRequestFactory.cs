@@ -1,9 +1,7 @@
-﻿using Newtonsoft.Json;
-
-namespace Kong
+﻿namespace Kong
 {
     public interface IKongRequestFactory
     {
-        void Configure(JsonSerializerSettings settings);
+
     }
 }

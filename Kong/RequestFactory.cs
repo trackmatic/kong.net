@@ -68,10 +68,5 @@ namespace Kong
             request.Data = data;
             return request;
         }
-
-        public virtual void Configure(JsonSerializerSettings settings)
-        {
-            
-        }
     }
 }

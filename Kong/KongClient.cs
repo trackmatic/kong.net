@@ -1,5 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Linq;
+using System.Reflection;
+using Kong.Model;
 using Kong.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -11,55 +12,52 @@ namespace Kong
     public class KongClient : IKongClient
     {
         private readonly JsonSerializerSettings _settings;
-
-        private readonly Dictionary<Type, IKongRequestFactory> _factories;
-
-        private readonly ISlumberClient _slumber;
         
-        public KongClient(string baseUri) : this(baseUri, c => { })
+        private readonly ISlumberClient _slumber;
+
+        private readonly IPluginFactory _pluginFactory;
+
+        public KongClient(string baseUri) : this(baseUri, new DefaultPluginFactory())
         {
+            
         }
 
-        public KongClient(string baseUri, Action<ISlumberConfiguration> configure)
+        public KongClient(string baseUri, IPluginFactory pluginFactory)
         {
+            _pluginFactory = pluginFactory;
+            _settings = CreateJsonSerializerSettings();
+            _slumber = new SlumberClient(baseUri, c =>
+            {
+                c.UseKongSerialization(_settings).UseHttp(http => http.UseJsonAsDefaultContentType());
+            });
+        }
+        
+        public IRestResponse<T> Execute<T>(IRestRequest<T> request)
+        {
+            return _slumber.Execute(request);
+        }
 
-            _factories = new Dictionary<Type, IKongRequestFactory>();
-            _settings = new JsonSerializerSettings
+        public JsonSerializerSettings CreateJsonSerializerSettings()
+        {
+            var settings = new JsonSerializerSettings
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                 NullValueHandling = NullValueHandling.Ignore
             };
-            _settings.Converters.Add(new IsoDateTimeConverter());
-            _slumber = new SlumberClient(baseUri, c =>
-            {
-                c.UseKongSerialization(_settings).UseHttp(http => http.UseJsonAsDefaultContentType());
-                configure(c);
-            });
-        }
-        
-        public void Register(IKongRequestFactory factory)
-        {
-            if (_factories.ContainsKey(factory.GetType()))
-            {
-                return;
-            }
-            _factories.Add(factory.GetType(), factory);
-            factory.Configure(_settings);
+            var converter = new PluginConverter(_pluginFactory);
+            settings.Converters.Add(converter);
+            settings.Converters.Add(new IsoDateTimeConverter());
+            return settings;
         }
 
-        public T Get<T>() where T : IKongRequestFactory
+        public KongClient RegisterPluginsFrom(Assembly assembly)
         {
-            var key = typeof (T);
-            if (!_factories.ContainsKey(key))
+            var types = assembly.GetTypes().Where(x => x.BaseType == typeof(Plugin));
+            foreach (var type in types)
             {
-                return default(T);
+                _pluginFactory.Register(Plugin.GetNameFromType(type), type);
             }
-            return (T)_factories[key];
-        }
-
-        public IRestResponse<T> Execute<T>(IRestRequest<T> request)
-        {
-            return _slumber.Execute(request);
+            return this;
         }
     }
 }

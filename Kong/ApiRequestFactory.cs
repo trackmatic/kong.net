@@ -7,7 +7,7 @@ namespace Kong
     {
         public ApiRequestFactory(IKongClient client) : base(client, "apis")
         {
-            client.Register(this);
+
         }
 
         public IKongCollection<Api> List(string name = null, string requestHost = null, string requestPath = null, string upstreamUrl = null, int size = 100, int offset = 0)

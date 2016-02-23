@@ -8,12 +8,12 @@ namespace Kong
     {
         public static ApiRequestFactory Apis(this IKongClient client)
         {
-            return client.Get<ApiRequestFactory>() ?? new ApiRequestFactory(client);
+            return new ApiRequestFactory(client);
         }
 
         public static ConsumerRequestFactory Consumers(this IKongClient client)
         {
-            return client.Get<ConsumerRequestFactory>() ?? new ConsumerRequestFactory(client);
+            return new ConsumerRequestFactory(client);
         }
 
         public static Status Status(this IKongClient client)

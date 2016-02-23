@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JwtPluginRequestFactory.cs" />
     <Compile Include="KeyAuthRequestFactory.cs" />
     <Compile Include="BasicAuthRequestFactory.cs" />
     <Compile Include="InternalPluginRequestFactory.cs" />
@@ -82,9 +83,11 @@
     <Compile Include="Model\CorsPluginConfig.cs" />
     <Compile Include="Model\IpRestrictionPlugin.cs" />
     <Compile Include="Model\IpRestrictionPluginconfig.cs" />
+    <Compile Include="Model\JwtCredentials.cs" />
+    <Compile Include="Model\JwtPlugin.cs" />
+    <Compile Include="Model\JwtPluginConfig.cs" />
     <Compile Include="Model\KeyAuthPlugin.cs" />
     <Compile Include="Model\KeyAuthPluginConfig.cs" />
-    <Compile Include="Model\Plugin.cs" />
     <Compile Include="Model\RateLimitingPlugin.cs" />
     <Compile Include="Model\RateLimitingPluginConfig.cs" />
     <Compile Include="Model\RequestSizeLimitingPlugin.cs" />
@@ -102,9 +105,6 @@
     <Compile Include="PluginRequestFactory.cs" />
     <Compile Include="PluginSchemaRequestFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serialization\DefaultPluginFactory.cs" />
-    <Compile Include="Serialization\IPluginFactory.cs" />
-    <Compile Include="Serialization\PluginConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Kong\Kong.csproj">

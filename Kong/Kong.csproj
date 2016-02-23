@@ -77,9 +77,12 @@
     <Compile Include="KongClient.cs" />
     <Compile Include="Model\About.cs" />
     <Compile Include="Model\AboutPlugins.cs" />
+    <Compile Include="Model\Plugin.cs" />
     <Compile Include="Model\Status.cs" />
     <Compile Include="RequestExecutor.cs" />
     <Compile Include="Serialization\ConfigurationExtensions.cs" />
+    <Compile Include="Serialization\DefaultPluginFactory.cs" />
+    <Compile Include="Serialization\IPluginFactory.cs" />
     <Compile Include="Serialization\KongSerializerFactory.cs" />
     <Compile Include="Model\Api.cs" />
     <Compile Include="Model\Consumer.cs" />
@@ -87,6 +90,7 @@
     <Compile Include="Model\KongCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestFactory.cs" />
+    <Compile Include="Serialization\PluginConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
