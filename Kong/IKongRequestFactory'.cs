@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Kong.Model;
 
 namespace Kong
 {
     public interface IKongRequestFactory<T> : IKongRequestFactory
     {
-        IKongCollection<T> List(IDictionary<string, object> parameters);
+        Task<IKongCollection<T>> List(IDictionary<string, object> parameters);
 
-        T Get(string id);
+        Task<T> Get(string id);
 
-        void Delete(string id);
+        Task Delete(string id);
 
-        T Post(T data);
+        Task<T> Post(T data);
 
-        T Patch(T data);
+        Task<T> Patch(T data);
     }
 }

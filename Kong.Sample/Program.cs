@@ -1,5 +1,6 @@
 ﻿using System;
 using Kong.Plugins;
+using Kong.Plugins.Model;
 
 namespace Kong.Sample
 {
@@ -7,7 +8,7 @@ namespace Kong.Sample
     {
         static void Main(string[] args)
         {
-            var client = new KongClient("http://10.10.0.35:8001").RegisterPluginsFrom(typeof(PluginRequestFactory).Assembly);
+            var client = new KongClient("http://kongserver:8001").RegisterPluginsFrom(typeof(PluginRequestFactory).Assembly);
 
             var apis = client.Apis();
 

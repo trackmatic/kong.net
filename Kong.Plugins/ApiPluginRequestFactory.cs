@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Kong.Model;
 
 namespace Kong.Plugins
@@ -12,7 +13,7 @@ namespace Kong.Plugins
             _api = api;
         }
 
-        public IKongCollection<Plugin> List(string name = null, string consumerId = null, int size = 100, int offset = 0)
+        public Task<IKongCollection<Plugin>> List(string name = null, string consumerId = null, int size = 100, int offset = 0)
         {
             return List(new Dictionary<string, object>
             {
@@ -24,51 +25,53 @@ namespace Kong.Plugins
             });
         }
 
-        public T Get<T>(string id) where T : Plugin
+        public async Task<T> Get<T>(string id) where T : Plugin
         {
-            return (T) Get(id);
+            var response = await Get(id);
+            return (T)response;
         }
 
-        public override IKongCollection<Plugin> List(IDictionary<string, object> parameters)
+        public override async Task<IKongCollection<Plugin>> List(IDictionary<string, object> parameters)
         {
-            return Execute(CreateGet<KongCollection<Plugin>>(parameters));
+            var response = await ExecuteAsync(CreateGet<KongCollection<Plugin>>(parameters));
+            return response;
         }
 
-        public override Plugin Get(string id)
+        public override Task<Plugin> Get(string id)
         {
-            return Execute(CreateGet<Plugin>(id, new Dictionary<string, object>
+            return ExecuteAsync(CreateGet<Plugin>(id, new Dictionary<string, object>
             {
                 {"apiId", _api.Id}
             }));
         }
 
-        public override void Delete(string id)
+        public override Task Delete(string id)
         {
-            Execute(CreateDelete(id, new Dictionary<string, object>
+            return ExecuteAsync(CreateDelete(id, new Dictionary<string, object>
             {
                 {"apiId", _api.Id}
             }));
         }
 
-        public override Plugin Post(Plugin data)
+        public override Task<Plugin> Post(Plugin data)
         {
-            return Execute(CreatePost<Plugin>(data, new Dictionary<string, object>
+            return ExecuteAsync(CreatePost<Plugin>(data, new Dictionary<string, object>
             {
                 {"apiId", _api.Id}
             }));
         }
 
-        public override Plugin Put(Plugin data)
+        public override Task<Plugin> Put(Plugin data)
         {
-            return Execute(CreatePut<Plugin>(data, new Dictionary<string, object>
+            return ExecuteAsync(CreatePut<Plugin>(data, new Dictionary<string, object>
             {
                 {"apiId", _api.Id}
             }));
         }
 
-        public override Plugin Patch(Plugin data)
+        public override Task<Plugin> Patch(Plugin data)
         {
-            return Execute(CreatePatch<Plugin>(data.Id, data, new Dictionary<string, object>
+            return ExecuteAsync(CreatePatch<Plugin>(data.Id, data, new Dictionary<string, object>
             {
                 {"apiId", _api.Id}
             }));

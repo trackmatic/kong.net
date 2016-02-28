@@ -1,12 +1,12 @@
-﻿using Kong.Model;
-using Kong.Plugins.Model;
+﻿using System.Threading.Tasks;
+using Kong.Model;
 
 namespace Kong.Plugins
 {
     public interface IPluginRequestFactory : IKongRequestFactory<Plugin>
     {
-        IKongCollection<Plugin> List(string name = null, string consumerId = null, int size = 100, int offset = 0);
+        Task<IKongCollection<Plugin>> List(string name = null, string consumerId = null, int size = 100, int offset = 0);
 
-        T Get<T>(string id) where T : Plugin;
+        Task<T> Get<T>(string id) where T : Plugin;
     }
 }

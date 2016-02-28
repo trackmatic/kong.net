@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Kong.Model;
 
 namespace Kong
@@ -10,7 +11,7 @@ namespace Kong
 
         }
 
-        public IKongCollection<Api> List(string name = null, string requestHost = null, string requestPath = null, string upstreamUrl = null, int size = 100, int offset = 0)
+        public Task<IKongCollection<Api>> List(string name = null, string requestHost = null, string requestPath = null, string upstreamUrl = null, int size = 100, int offset = 0)
         {
             return List(new Dictionary<string, object>
             {
@@ -23,34 +24,35 @@ namespace Kong
             });
         }
         
-        public override IKongCollection<Api> List(IDictionary<string, object> parameters)
+        public override async Task<IKongCollection<Api>> List(IDictionary<string, object> parameters)
         {
-            return Execute(CreateGet<KongCollection<Api>>(parameters));
+            var response = await ExecuteAsync(CreateGet<KongCollection<Api>>(parameters));
+            return response;
         }
 
-        public override Api Get(string id)
+        public override Task<Api> Get(string id)
         {
-            return Execute(CreateGet<Api>(id, new Dictionary<string, object>()));
+            return ExecuteAsync(CreateGet<Api>(id, new Dictionary<string, object>()));
         }
 
-        public override void Delete(string id)
+        public override Task Delete(string id)
         {
-            Execute(CreateDelete(id));
+            return ExecuteAsync(CreateDelete(id));
         }
 
-        public override Api Patch(Api data)
+        public override Task<Api> Patch(Api data)
         {
-            return Execute(CreatePatch<Api>(data.Id, data));
+            return ExecuteAsync(CreatePatch<Api>(data.Id, data));
         }
 
-        public override Api Post(Api data)
+        public override Task<Api> Post(Api data)
         {
-            return Execute(CreatePost<Api>(data));
+            return ExecuteAsync(CreatePost<Api>(data));
         }
 
-        public override Api Put(Api data)
+        public override Task<Api> Put(Api data)
         {
-            return Execute(CreatePut<Api>(data));
+            return ExecuteAsync(CreatePut<Api>(data));
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿namespace Kong.Plugins
+﻿using System.Threading.Tasks;
+
+namespace Kong.Plugins
 {
     public interface IPluginSchemaRequestFactory
     {
-        dynamic Get(string name);
+        Task<dynamic> Get(string name);
     }
 }

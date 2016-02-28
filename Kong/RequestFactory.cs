@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Kong.Model;
-using Newtonsoft.Json;
 using Slumber;
 using Slumber.Http;
 
@@ -15,17 +15,17 @@ namespace Kong
             _name = name;
         }
 
-        public abstract IKongCollection<T> List(IDictionary<string, object> parameters);
+        public abstract Task<IKongCollection<T>> List(IDictionary<string, object> parameters);
 
-        public abstract T Get(string id);
+        public abstract Task<T> Get(string id);
 
-        public abstract void Delete(string id);
+        public abstract Task Delete(string id);
 
-        public abstract T Patch(T data);
+        public abstract Task<T> Patch(T data);
         
-        public abstract T Post(T data);
+        public abstract Task<T> Post(T data);
 
-        public abstract T Put(T data);
+        public abstract Task<T> Put(T data);
        
         protected IRestRequest<IRestResponse> CreateDelete(string id, IDictionary<string, object> parameters = null)
         {

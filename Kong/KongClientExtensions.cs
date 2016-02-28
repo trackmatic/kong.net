@@ -1,4 +1,5 @@
-﻿using Kong.Model;
+﻿using System.Threading.Tasks;
+using Kong.Model;
 using Slumber;
 using Slumber.Http;
 
@@ -16,14 +17,16 @@ namespace Kong
             return new ConsumerRequestFactory(client);
         }
 
-        public static Status Status(this IKongClient client)
+        public static async Task<Status> Status(this IKongClient client)
         {
-            return client.Execute(new HttpRestRequest<Status>("/status", HttpMethods.Get)).Data;
+            var result = await client.ExecuteAsync(new HttpRestRequest<Status>("/status", HttpMethods.Get));
+            return result.Data;
         }
 
-        public static About About(this IKongClient client)
+        public static async Task<About> About(this IKongClient client)
         {
-            return client.Execute(new HttpRestRequest<About>("/", HttpMethods.Get)).Data;
+            var result = await client.ExecuteAsync(new HttpRestRequest<About>("/", HttpMethods.Get));
+            return result.Data;
         }
     }
 }

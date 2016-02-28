@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Kong.Model;
 
 namespace Kong
@@ -10,7 +11,7 @@ namespace Kong
 
         }
 
-        public IKongCollection<Consumer> List(string username = null, string customId = null)
+        public Task<IKongCollection<Consumer>> List(string username = null, string customId = null)
         {
             return List(new Dictionary<string, object>
             {
@@ -19,34 +20,35 @@ namespace Kong
             });
         }
 
-        public override IKongCollection<Consumer> List(IDictionary<string, object> parameters)
+        public override async Task<IKongCollection<Consumer>> List(IDictionary<string, object> parameters)
         {
-            return Execute(CreateGet<KongCollection<Consumer>>(parameters));
+            var response = await ExecuteAsync(CreateGet<KongCollection<Consumer>>(parameters));
+            return response;
         }
 
-        public override Consumer Get(string id)
+        public override Task<Consumer> Get(string id)
         {
-            return Execute(CreateGet<Consumer>(id, new Dictionary<string, object>()));
+            return ExecuteAsync(CreateGet<Consumer>(id, new Dictionary<string, object>()));
         }
 
-        public override void Delete(string id)
+        public override Task Delete(string id)
         {
-            Execute(CreateDelete(id));
+            return ExecuteAsync(CreateDelete(id));
         }
 
-        public override Consumer Post(Consumer data)
+        public override Task<Consumer> Post(Consumer data)
         {
-            return Execute(CreatePost<Consumer>(data));
+            return ExecuteAsync(CreatePost<Consumer>(data));
         }
 
-        public override Consumer Put(Consumer data)
+        public override Task<Consumer> Put(Consumer data)
         {
-            return Execute(CreatePut<Consumer>(data));
+            return ExecuteAsync(CreatePut<Consumer>(data));
         }
 
-        public override Consumer Patch(Consumer data)
+        public override Task<Consumer> Patch(Consumer data)
         {
-            return Execute(CreatePatch<Consumer>(data.Id, data));
+            return ExecuteAsync(CreatePatch<Consumer>(data.Id, data));
         }
     }
 }

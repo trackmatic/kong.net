@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using Kong.Model;
 using Kong.Serialization;
 using Newtonsoft.Json;
@@ -32,9 +33,9 @@ namespace Kong
             });
         }
         
-        public IRestResponse<T> Execute<T>(IRestRequest<T> request)
+        public Task<IRestResponse<T>> ExecuteAsync<T>(IRestRequest<T> request)
         {
-            return _slumber.Execute(request);
+            return _slumber.ExecuteAsync(request);
         }
 
         public JsonSerializerSettings CreateJsonSerializerSettings()

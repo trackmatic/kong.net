@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Kong.Model;
 
 namespace Kong.Plugins
@@ -10,35 +11,36 @@ namespace Kong.Plugins
         {
         }
 
-        public override IKongCollection<dynamic> List(IDictionary<string, object> parameters)
+        public override Task<IKongCollection<dynamic>> List(IDictionary<string, object> parameters)
         {
             throw new NotImplementedException();
         }
 
-        public override dynamic Get(string id)
+        public override async Task<dynamic> Get(string id)
         {
-            return Execute(CreateGet<dynamic>(new Dictionary<string, object>
+            var response = await ExecuteAsync(CreateGet<dynamic>(new Dictionary<string, object>
             {
                 {"name", id}
             }));
+            return response;
         }
 
-        public override void Delete(string id)
+        public override Task Delete(string id)
         {
             throw new NotImplementedException();
         }
 
-        public override dynamic Post(dynamic data)
+        public override Task<dynamic> Post(dynamic data)
         {
             throw new NotImplementedException();
         }
 
-        public override dynamic Put(dynamic data)
+        public override Task<dynamic> Put(dynamic data)
         {
             throw new NotImplementedException();
         }
 
-        public override dynamic Patch(dynamic data)
+        public override Task<dynamic> Patch(dynamic data)
         {
             throw new NotImplementedException();
         }

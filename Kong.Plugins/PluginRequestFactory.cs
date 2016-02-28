@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Kong.Model;
 
 namespace Kong.Plugins
@@ -9,7 +10,7 @@ namespace Kong.Plugins
         {
         }
 
-        public IKongCollection<Plugin> List(string name = null, string consumerId = null, int size = 100, int offset = 0)
+        public Task<IKongCollection<Plugin>> List(string name = null, string consumerId = null, int size = 100, int offset = 0)
         {
             return List(new Dictionary<string, object>
             {
@@ -20,38 +21,40 @@ namespace Kong.Plugins
             });
         }
 
-        public override IKongCollection<Plugin> List(IDictionary<string, object> parameters)
+        public override async Task<IKongCollection<Plugin>> List(IDictionary<string, object> parameters)
         {
-            return Execute(CreateGet<KongCollection<Plugin>>(parameters));
+            var response = await ExecuteAsync(CreateGet<KongCollection<Plugin>>(parameters));
+            return response;
         }
-        public T Get<T>(string id) where T : Plugin
+        public async Task<T> Get<T>(string id) where T : Plugin
         {
-            return (T)Get(id);
-        }
-
-        public override Plugin Get(string id)
-        {
-            return Execute(CreateGet<Plugin>(id));
+            var response = await Get(id);
+            return (T)response;
         }
 
-        public override void Delete(string id)
+        public override Task<Plugin> Get(string id)
         {
-            Execute(CreateDelete(id));
+            return ExecuteAsync(CreateGet<Plugin>(id));
         }
 
-        public override Plugin Post(Plugin data)
+        public override Task Delete(string id)
         {
-            return Execute(CreatePost<Plugin>(data));
+            return ExecuteAsync(CreateDelete(id));
         }
 
-        public override Plugin Put(Plugin data)
+        public override Task<Plugin> Post(Plugin data)
         {
-            return Execute(CreatePut<Plugin>(data));
+            return ExecuteAsync(CreatePost<Plugin>(data));
         }
 
-        public override Plugin Patch(Plugin data)
+        public override Task<Plugin> Put(Plugin data)
         {
-            return Execute(CreatePatch<Plugin>(data.Id, data));
+            return ExecuteAsync(CreatePut<Plugin>(data));
+        }
+
+        public override Task<Plugin> Patch(Plugin data)
+        {
+            return ExecuteAsync(CreatePatch<Plugin>(data.Id, data));
         }
     }
 }

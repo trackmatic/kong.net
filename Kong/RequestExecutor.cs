@@ -1,4 +1,5 @@
-﻿using Slumber;
+﻿using System.Threading.Tasks;
+using Slumber;
 
 namespace Kong
 {
@@ -11,9 +12,9 @@ namespace Kong
             _client = client;
         }
 
-        protected TResponse Execute<TResponse>(IRestRequest<TResponse> request)
+        protected async Task<TResponse> ExecuteAsync<TResponse>(IRestRequest<TResponse> request)
         {
-            var response = _client.Execute(request);
+            var response = await _client.ExecuteAsync(request);
             if (response.HasError)
             {
                 throw response.Exception;

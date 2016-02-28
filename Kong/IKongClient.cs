@@ -1,9 +1,10 @@
-﻿using Slumber;
+﻿using System.Threading.Tasks;
+using Slumber;
 
 namespace Kong
 {
     public interface IKongClient
     {
-        IRestResponse<T> Execute<T>(IRestRequest<T> request);
+        Task<IRestResponse<T>> ExecuteAsync<T>(IRestRequest<T> request);
     }
 }

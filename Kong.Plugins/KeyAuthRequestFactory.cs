@@ -1,4 +1,5 @@
-﻿using Kong.Model;
+﻿using System.Threading.Tasks;
+using Kong.Model;
 using Slumber;
 using Slumber.Http;
 
@@ -13,7 +14,7 @@ namespace Kong.Plugins
             _consumer = consumer;
         }
 
-        public void CreateCredentials(string key)
+        public Task CreateCredentials(string key)
         {
             var request = new HttpRestRequest<dynamic>("/consumers/{consumerId}/key-auth", HttpMethods.Post)
             {
@@ -24,7 +25,7 @@ namespace Kong.Plugins
                 }
             };
             request.AddQueryParameter("consumerId", _consumer.Id);
-            Execute(request);
+            return ExecuteAsync(request);
         }
     }
 }
