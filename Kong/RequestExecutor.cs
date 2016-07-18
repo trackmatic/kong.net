@@ -12,7 +12,7 @@ namespace Kong
             _client = client;
         }
 
-        protected async Task<TResponse> ExecuteAsync<TResponse>(IRestRequest<TResponse> request)
+        protected async Task<TResponse> ExecuteAsync<TResponse>(IRequest<TResponse> request)
         {
             var response = await _client.ExecuteAsync(request);
             if (response.HasError)

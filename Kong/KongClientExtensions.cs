@@ -19,13 +19,13 @@ namespace Kong
 
         public static async Task<Status> Status(this IKongClient client)
         {
-            var result = await client.ExecuteAsync(new HttpRestRequest<Status>("/status", HttpMethods.Get));
+            var result = await client.ExecuteAsync(new HttpRequest<Status>("/status", HttpMethods.Get));
             return result.Data;
         }
 
         public static async Task<About> About(this IKongClient client)
         {
-            var result = await client.ExecuteAsync(new HttpRestRequest<About>("/", HttpMethods.Get));
+            var result = await client.ExecuteAsync(new HttpRequest<About>("/", HttpMethods.Get));
             return result.Data;
         }
     }

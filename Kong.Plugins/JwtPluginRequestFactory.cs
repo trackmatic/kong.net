@@ -17,7 +17,7 @@ namespace Kong.Plugins
 
         public async Task<IKongCollection<JwtCredentials>> List()
         {
-            var request = new HttpRestRequest<KongCollection<JwtCredentials>>("/consumers/{consumerId}/jwt", HttpMethods.Get);
+            var request = new HttpRequest<KongCollection<JwtCredentials>>("/consumers/{consumerId}/jwt", HttpMethods.Get);
             request.AddQueryParameter("consumerId", _consumer.Id);
             var response = await ExecuteAsync(request);
             return response;
@@ -25,7 +25,7 @@ namespace Kong.Plugins
 
         public Task Patch(JwtCredentials credentials)
         {
-            var request = new HttpRestRequest<KongCollection<JwtCredentials>>("/consumers/{consumerId}/jwt/{credentialId}", HttpMethods.Patch)
+            var request = new HttpRequest<KongCollection<JwtCredentials>>("/consumers/{consumerId}/jwt/{credentialId}", HttpMethods.Patch)
             {
                 Data = credentials
             };
@@ -36,7 +36,7 @@ namespace Kong.Plugins
 
         public Task Delete(JwtCredentials credentials)
         {
-            var request = new HttpRestRequest<dynamic>("/consumers/{consumerId}/jwt/{credentialId}", HttpMethods.Delete);
+            var request = new HttpRequest<dynamic>("/consumers/{consumerId}/jwt/{credentialId}", HttpMethods.Delete);
             request.AddQueryParameter("consumerId", _consumer.Id);
             request.AddQueryParameter("credentialId", credentials.Id);
             return ExecuteAsync(request);
@@ -59,7 +59,7 @@ namespace Kong.Plugins
 
         private Task<JwtCredentials> CreateCredentials(object data)
         {
-            var request = new HttpRestRequest<JwtCredentials>("/consumers/{consumerId}/jwt", HttpMethods.Post)
+            var request = new HttpRequest<JwtCredentials>("/consumers/{consumerId}/jwt", HttpMethods.Post)
             {
                 Data = data
             };

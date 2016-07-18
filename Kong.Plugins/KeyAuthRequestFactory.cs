@@ -16,7 +16,7 @@ namespace Kong.Plugins
 
         public Task CreateCredentials(string key)
         {
-            var request = new HttpRestRequest<dynamic>("/consumers/{consumerId}/key-auth", HttpMethods.Post)
+            var request = new HttpRequest<dynamic>("/consumers/{consumerId}/key-auth", HttpMethods.Post)
             {
                 Data = new
                 {

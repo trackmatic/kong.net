@@ -33,7 +33,7 @@ namespace Kong
             });
         }
         
-        public Task<IRestResponse<T>> ExecuteAsync<T>(IRestRequest<T> request)
+        public Task<IResponse<T>> ExecuteAsync<T>(IRequest<T> request)
         {
             return _slumber.ExecuteAsync(request);
         }

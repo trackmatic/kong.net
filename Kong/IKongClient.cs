@@ -5,6 +5,6 @@ namespace Kong
 {
     public interface IKongClient
     {
-        Task<IRestResponse<T>> ExecuteAsync<T>(IRestRequest<T> request);
+        Task<IResponse<T>> ExecuteAsync<T>(IRequest<T> request);
     }
 }
