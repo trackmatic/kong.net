@@ -7,9 +7,7 @@ namespace Kong.Plugins.Model
     {
         public CorsPluginConfig()
         {
-            Methods = new List<string>();
-            Headers = new Dictionary<string, string>();
-            ExposedHeaders = new Dictionary<string, string>();
+
         }
 
         [JsonProperty("credentials")]
@@ -22,13 +20,13 @@ namespace Kong.Plugins.Model
         public string Origin { get; set; }
 
         [JsonProperty("methods")]
-        public List<string> Methods { get; set; }
+        public object Methods { get; set; }
 
         [JsonProperty("headers")]
-        public Dictionary<string, string> Headers { get; set; }
+        public object Headers { get; set; }
 
         [JsonProperty("exposed_headers")]
-        public Dictionary<string, string> ExposedHeaders { get; set; }
+        public object ExposedHeaders { get; set; }
 
         [JsonProperty("max_age")]
         public long MaxAge { get; set; }

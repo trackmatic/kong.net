@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Kong.Model;
 using Kong.Plugins;
@@ -24,11 +25,6 @@ namespace Kong.Sample
 
             var apis = client.Apis();
 
-            var api = await apis.Get("api-v1-vaya");
-
-            api.UpstreamUrl = "http://rest01.trackmatic.co.za";
-
-            await apis.Patch(api);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
-using Slmber.Json;
 using Slumber;
+using Slumber.Json;
 
 namespace Kong.Serialization
 {

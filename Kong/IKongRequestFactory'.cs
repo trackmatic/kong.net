@@ -15,5 +15,7 @@ namespace Kong
         Task<T> Post(T data);
 
         Task<T> Patch(T data);
+
+        Task<T> Put(T data);
     }
 }

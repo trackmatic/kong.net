@@ -13,7 +13,7 @@
     <tags>Kong</tags>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="7.0.1" />
-      <dependency id="Slumber" version="0.0.16" />
+      <dependency id="Slumber" version="0.01.1" />
     </dependencies>
   </metadata>
 </package>
