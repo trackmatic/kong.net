@@ -43,7 +43,8 @@ namespace Kong
             var settings = new JsonSerializerSettings
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                NullValueHandling = NullValueHandling.Ignore
+                NullValueHandling = NullValueHandling.Ignore,
+                ContractResolver = new SnakeCaseContractResolver()
             };
             var converter = new PluginConverter(_pluginFactory);
             settings.Converters.Add(converter);

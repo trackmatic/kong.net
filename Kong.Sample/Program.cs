@@ -25,6 +25,28 @@ namespace Kong.Sample
 
             var apis = client.Apis();
 
+            var api = await apis.Get("api-v1-vaya");
+
+            api.UpstreamUrl = "http://rest02.trackmatic.co.za";
+
+            await apis.Put(api);
+
+            /*((CorsPlugin) cors).Config.ExposedHeaders = new List<string> { "Authorization" };
+
+
+            ((CorsPlugin) cors).Config.Methods = new List<string>
+            {
+                "GET",
+                "HEAD",
+                "PUT",
+                "PATCH",
+                "POST",
+                "DELETE"
+            };
+            ((CorsPlugin) cors).Config.Headers = null;
+            ((CorsPlugin) cors).Config.PreflightContinue = true;
+            await plugins.Put(cors);*/
+
         }
     }
 }

@@ -7,10 +7,12 @@ namespace Kong.Serialization
     public class KongSerializerFactory : ISerializationFactory
     {
         private readonly JsonSerializerSettings _settings;
+        private readonly ILogger _logger;
 
-        public KongSerializerFactory(JsonSerializerSettings settings)
+        public KongSerializerFactory(JsonSerializerSettings settings, ILogger logger)
         {
             _settings = settings;
+            _logger = logger;
         }
 
         public void Register(JsonConverter converter)
@@ -23,9 +25,14 @@ namespace Kong.Serialization
             return new DynamicJsonDeserializer(_settings);
         }
 
-        public ISerializer CreateSerializer()
+        public ISerializer CreateSerializer(IRequest request)
         {
-            return new DynamicJsonSerializer(_settings);
+            return new DynamicJsonSerializer(_settings, _logger);
+        }
+
+        public bool AppliesTo(string contentType)
+        {
+            return contentType == "application/json";
         }
     }
 }

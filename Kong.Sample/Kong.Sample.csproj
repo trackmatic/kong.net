@@ -38,7 +38,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Slumber, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Slumber.0.1.1\lib\net45\Slumber.dll</HintPath>
+      <HintPath>..\packages\Slumber.0.1.4\lib\net45\Slumber.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -59,10 +59,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Kong.Plugins\Kong.Plugins.csproj">
-      <Project>{73f29cde-c31f-4956-b9e5-c6676f60620b}</Project>
-      <Name>Kong.Plugins</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Kong\Kong.csproj">
       <Project>{22da55a5-8ce9-4425-b877-2b4bb9ccedb3}</Project>
       <Name>Kong</Name>

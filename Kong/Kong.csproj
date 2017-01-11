@@ -35,7 +35,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Slumber, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Slumber.0.1.1\lib\net45\Slumber.dll</HintPath>
+      <HintPath>..\packages\Slumber.0.1.4\lib\net45\Slumber.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -59,10 +59,47 @@
     <Compile Include="Model\AboutPlugins.cs" />
     <Compile Include="Model\Plugin.cs" />
     <Compile Include="Model\Status.cs" />
+    <Compile Include="Plugins\ApiPluginRequestFactory.cs" />
+    <Compile Include="Plugins\BasicAuthRequestFactory.cs" />
+    <Compile Include="Plugins\IPluginRequestFactory.cs" />
+    <Compile Include="Plugins\IPluginSchemaRequestFactory.cs" />
+    <Compile Include="Plugins\JwtPluginRequestFactory.cs" />
+    <Compile Include="Plugins\KeyAuthRequestFactory.cs" />
+    <Compile Include="Plugins\KongClientExtensions.cs" />
+    <Compile Include="Plugins\Model\AclPlugin.cs" />
+    <Compile Include="Plugins\Model\AclPluginConfig.cs" />
+    <Compile Include="Plugins\Model\BasicAuthPlugin.cs" />
+    <Compile Include="Plugins\Model\BasicAuthPluginConfig.cs" />
+    <Compile Include="Plugins\Model\CorsPlugin.cs" />
+    <Compile Include="Plugins\Model\CorsPluginConfig.cs" />
+    <Compile Include="Plugins\Model\IpRestrictionPlugin.cs" />
+    <Compile Include="Plugins\Model\IpRestrictionPluginconfig.cs" />
+    <Compile Include="Plugins\Model\JwtCredentials.cs" />
+    <Compile Include="Plugins\Model\JwtPlugin.cs" />
+    <Compile Include="Plugins\Model\JwtPluginConfig.cs" />
+    <Compile Include="Plugins\Model\KeyAuthPlugin.cs" />
+    <Compile Include="Plugins\Model\KeyAuthPluginConfig.cs" />
+    <Compile Include="Plugins\Model\RateLimitingPlugin.cs" />
+    <Compile Include="Plugins\Model\RateLimitingPluginConfig.cs" />
+    <Compile Include="Plugins\Model\RequestSizeLimitingPlugin.cs" />
+    <Compile Include="Plugins\Model\RequestSizeLimitingPluginConfig.cs" />
+    <Compile Include="Plugins\Model\RequestTransformerPlugin.cs" />
+    <Compile Include="Plugins\Model\RequestTransformerPluginConfig.cs" />
+    <Compile Include="Plugins\Model\ResponseTransformerPlugin.cs" />
+    <Compile Include="Plugins\Model\ResponseTransformerPluginConfig.cs" />
+    <Compile Include="Plugins\Model\SslPlugin.cs" />
+    <Compile Include="Plugins\Model\SslPluginConfig.cs" />
+    <Compile Include="Plugins\Model\TcpLogPlugin.cs" />
+    <Compile Include="Plugins\Model\TcpLogPluginConfig.cs" />
+    <Compile Include="Plugins\Model\UdpLogPlugin.cs" />
+    <Compile Include="Plugins\Model\UdpLogPluginConfig.cs" />
+    <Compile Include="Plugins\PluginRequestFactory.cs" />
+    <Compile Include="Plugins\PluginSchemaRequestFactory.cs" />
     <Compile Include="RequestExecutor.cs" />
     <Compile Include="Serialization\ConfigurationExtensions.cs" />
     <Compile Include="Serialization\DefaultPluginFactory.cs" />
     <Compile Include="Serialization\IPluginFactory.cs" />
+    <Compile Include="Serialization\KongSerializationProvider.cs" />
     <Compile Include="Serialization\KongSerializerFactory.cs" />
     <Compile Include="Model\Api.cs" />
     <Compile Include="Model\Consumer.cs" />
@@ -71,8 +108,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestFactory.cs" />
     <Compile Include="Serialization\PluginConverter.cs" />
+    <Compile Include="Serialization\SnakeCaseContractResolver.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Kong.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

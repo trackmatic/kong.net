@@ -7,7 +7,7 @@ namespace Kong.Serialization
     {
         public static ISlumberConfiguration UseKongSerialization(this ISlumberConfiguration configuration, JsonSerializerSettings settings)
         {
-            configuration.Serialization = new KongSerializerFactory(settings);
+            configuration.Serialization = new KongSerializationProvider(settings, configuration.Log); 
             return configuration;
         }
     }
