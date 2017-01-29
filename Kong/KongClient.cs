@@ -1,65 +1,43 @@
-﻿using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Kong.About;
 using Kong.Model;
-using Kong.Serialization;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Slumber;
-using Slumber.Http;
+using Kong.Slumber;
 
 namespace Kong
 {
     public class KongClient : IKongClient
     {
-        private readonly JsonSerializerSettings _settings;
-        
-        private readonly ISlumberClient _slumber;
+        private readonly IRequestFactory _requestFactory;
 
-        private readonly IPluginFactory _pluginFactory;
-
-        public KongClient(string baseUri) : this(baseUri, new DefaultPluginFactory())
+        internal KongClient(IRequestFactory requestfactory)
         {
-            
+            _requestFactory = requestfactory;
         }
 
-        public KongClient(string baseUri, IPluginFactory pluginFactory)
+        public async Task<Node> Node()
         {
-            _pluginFactory = pluginFactory;
-            _settings = CreateJsonSerializerSettings();
-            _slumber = new SlumberClient(baseUri, c =>
-            {
-                c.UseKongSerialization(_settings).UseHttp(http => http.UseJsonAsDefaultContentType());
-            });
-        }
-        
-        public Task<IResponse<T>> ExecuteAsync<T>(IRequest<T> request)
-        {
-            return _slumber.ExecuteAsync(request);
+            var requestFactory = _requestFactory.Create("/");
+            var response = await requestFactory.Get<Node>().ConfigureAwait(false);
+            return response;
         }
 
-        public JsonSerializerSettings CreateJsonSerializerSettings()
+        public async Task<Status> Status()
         {
-            var settings = new JsonSerializerSettings
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                NullValueHandling = NullValueHandling.Ignore,
-                ContractResolver = new SnakeCaseContractResolver()
-            };
-            var converter = new PluginConverter(_pluginFactory);
-            settings.Converters.Add(converter);
-            settings.Converters.Add(new IsoDateTimeConverter());
-            return settings;
+            var requestFactory = _requestFactory.Create("/status");
+            var response = await requestFactory.Get<Status>().ConfigureAwait(false);
+            return response;
         }
 
-        public KongClient RegisterPluginsFrom(Assembly assembly)
+        public async Task<ICluster> Cluster()
         {
-            var types = assembly.GetTypes().Where(x => x.BaseType == typeof(Plugin));
-            foreach (var type in types)
-            {
-                _pluginFactory.Register(Plugin.GetNameFromType(type), type);
-            }
-            return this;
+            var requestFactory = _requestFactory.Create("/cluster");
+            var response = await requestFactory.Get<Cluster>().ConfigureAwait(false);
+            response.Configure(requestFactory);
+            return response;
         }
+
+        public IApis Apis => new Apis(_requestFactory.Create("/apis"));
+
+        public IConsumers Consumers => new Consumers(_requestFactory.Create("/consumers"));
     }
 }

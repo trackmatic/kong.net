@@ -1,19 +1,10 @@
-﻿namespace Kong.Model
+﻿using Kong.Model;
+
+namespace Kong.About
 {
     public class Status
     {
-        public int ConnectionsHandled { get; set; }
-
-        public int ConnectionsReading { get; set; }
-
-        public int ConnectionsActive { get; set; }
-
-        public int ConnectionsWaiting { get; set; }
-
-        public int ConnectionsWriting { get; set; }
-
-        public long TotalRuests { get; set; }
-
-        public long ConnectionsAccepted { get; set; }
+        public ServerStatus Server { get; set; }
+        public DatabaseStatus Database { get; set; }
     }
 }

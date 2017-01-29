@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Kong.Model;
-using Kong.Plugins;
-using Kong.Plugins.Model;
 
 namespace Kong.Sample
 {
@@ -20,16 +16,32 @@ namespace Kong.Sample
 
         private static async void Run()
         {
+            var factory = new KongClientFactory("http://localhost:8001");
 
-            var client = new KongClient("http://10.10.0.35:8001").RegisterPluginsFrom(typeof(PluginRequestFactory).Assembly);
+            var client = factory.Create();
 
-            var apis = client.Apis();
+            var node = client.Node().Result;
 
-            var api = await apis.Get("api-v1-vaya");
+            var consumers = client.Consumers.List().Result;
 
-            api.UpstreamUrl = "http://rest02.trackmatic.co.za";
+            var apis = client.Apis.List(requestHost: "rest.api.com22").Result;
 
-            await apis.Put(api);
+
+            var api = client.Apis.Get("google").Result;
+            
+
+            var plugin = await api.Plugins.Get("f5a16ae1-ee01-47d6-8fb4-5f7365e36cde");
+
+            var configuration = plugin.Configure<JwtPlugin>();
+
+            var credentials = await configuration.Credentials(consumers.Data[0].Id).List();
+
+            foreach (var jwtCredential in credentials.Data)
+            {
+                await configuration.Credentials(consumers.Data[0].Id).Delete(jwtCredential.Id);
+            }
+
+            //var credential = await credentials.Create("a36c3049b36249a3c9f8891cb127243c", "e71829c351aa4242c2719cbfbe671c09");
 
             /*((CorsPlugin) cors).Config.ExposedHeaders = new List<string> { "Authorization" };
 

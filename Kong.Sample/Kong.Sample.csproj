@@ -38,7 +38,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Slumber, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Slumber.0.1.4\lib\net45\Slumber.dll</HintPath>
+      <HintPath>..\packages\Slumber.0.1.5\lib\net45\Slumber.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

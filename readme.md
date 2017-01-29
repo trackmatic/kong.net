@@ -9,79 +9,157 @@
     install-package Kong
 
 ## Create a KongClient
-
-    var client = new KongClient("http://kongserver:8001");
+```
+var clientFactory = new KongClientFactory("http://kongserver:8001");
+var client = clientFactory.Create();
+```
 
 ## About the Node
-
-    var about = client.About()
+Retrieve information about the node
+```
+var node = await client.Node();
+```
 
 ## Node Status
+Retrieve node status
+```
+var status = await client.Status();
+```
 
-    var status = client.Status()
+## Cluster status
+Retrieve the cluser status
+```
+var cluser = await client.Cluster();
+```
 
-## Modular Request Factories
+## Apis
+Access the admin api for your api's via the Apis property exposed on the client.
+```
+var apis = client.Apis;
+```
 
-Apis, Consumers and Plugins are exposed via extension methods on IKongClient. This provides a mechanism to extend the client libray with your own plugins. We will cover extending the library in more detail later in this document.
+### Listing Apis
+```
+var apis = await client.Apis.List();
+```
 
-You will need a requets factory in order to start talking to the Kong API. To start lets get a request factory for the apis
+### Retrieving an api
+An api can be retrieved by either the id or the name.
+```
+var api = await client.Apis.Get("name or id of api");
+```
 
-    var apis = client.Apis();
+### Updating an api
+```
+var api = await client.Apis.Get("name or id of api");
+api.RequestPath = "/";
+await api.Save();
+```
+Under the hood the client library is using the PUT api call. PATCH is not currently supported.
 
-The code above will return a request factory for the Api resource which can be used to issue requests to the Kong API
+### Deleting an api
+```
+var api = await client.Apis.Get("name or id of api");
+await api.Delete();
+```
 
-A request factory exposes the followng methods:
+## Consumers
 
-1. List - Allows you to search the resource
-2. Get - Allows you to retrieve a since resource based on the resource id
-3. Delete - Allows you to delete the resource with a given id
-4. Patch - Updates a given resource
-5. Post - Creates a new resource
+Access the admin api for your consumers via the Apis property exposed on the client.
+```
+var consumers = client.Consumers;
+```
 
-## Retrieve an api
+### Listing Consumers
+```
+var apis = await client.Consumers.List();
+```
 
-To retrieve a single api you can use the Get method on the ApiRequestFactory retrieved above
+### Retrieving a consumer
+A consumer can be retrieved by the consumer id.
+```
+var api = await client.Consumers.Get("id");
+```
 
-    var api = apis.Get("apiId");
+### Updating a consumer
+```
+var api = await client.Consumers.Get("id");
+api.CustomId = "56789";
+await api.Save();
+```
+Under the hood the client library is using the PUT api call. PATCH is not currently supported.
 
+### Deleting a consumer
+```
+var api = await client.Consumers.Get("id");
+await api.Delete();
+```
 ## Plugins
 
-Once you have retrieved a resource you may want to configure the plugins for it. To do this you will need to grab an instance of the PluginsRequestFactory. You can do this via the extension method on IKongClient. Note you will need to supply an instance of the Api which you want to configure plugins for
+The api for configuring plugins is exposed as a property on the IApi interface
 
-    var plugins = client.Plugins(api);
+```
+var api = await client.Apis.Get("name or id of api");
+var plugins = api.Plugins;
+```
 
 ### Creating a Plugin
 
-Once you have an instance of the plugins request factory you can start creating plugins. The code snippet below illustrates how this can be done
+The Kong admin api supports configuring multiple types of plugins through the same interface. Kong knows which plugin you are configuring based on the plugin name property.
 
-    var plugin = new RateLimitingPlugin
+The client library attempts to abstract some of this away using the .Net type system to set the type name based on the concrete plugin object being used.
+
+For example, you can add the basic-auth plugin to an api as follows:
+
+```
+var api = client.Apis.Get("id").Result;
+
+await api.Plugins.Create(new PluginData
+{
+    Config = new BasicAuthPlugin
     {
-        ApiId = api.Id,
-        Enabled = true,
-        Config = new RateLimitingPluginConfig
-        {
-            Second = 10
-        }
-    };
+        HideCredentials = false
+    }
+});
+```
+The client library will know which plugin you are trying to create by inspecting the Type of the Config property.
 
-    plugins.Post(plugin);
+### Updating a Plugin configuration
 
-## Basic Auth
+Currently to update a plugin configuration you will need to know what type of plugin you are working with. This is in place in order to keep the interface clean and is most use cases you will likely know what plugin you are trying to configure.
 
-Create the bsaic auth plugin on a selected api
+For example, if you wanted to retrieve the basic auth plugin created previously and change a property on it you would need to do the following:
 
-    var plugins = client.Plugins(api);
-    var plugin = new BasicAuthPlugin
-    {
-        Config = new BasicAuthPluginConfig
-        {
-            HideCredentials = false
-        }
-    };
-    plugins.Post(plugin);
+```
+var api = client.Apis.Get("id").Result;
 
-Configure credentials for a consumer
+var plugin = await api.Plugins.Get("plugin id");
 
-    var consumer = client.Consumers().Get("Bob");
-    var basicAuth = client.BasicAuth(consumer);
-    basicAuth.CreateCredentials("bob", "secret");
+var configuration = plugin.Configure<BasicAuthPlugin>();
+
+configuration.HideCredentials = true;
+
+await plugin.Save();
+```
+
+The client library will throw a PluginConfigurationException if you attempt to configure a plugin of the incorrect type.
+
+### Plugin specific configuration
+
+Where the plugin exposes additional admin interfaces, configuring consumer credentials for instance, then the additional api calls with be exposed on the plugin configuration object.
+
+For example, to create a basic auth credential for a consumer you would do the following
+
+```
+var api = client.Apis.Get("id").Result;
+
+var plugin = await api.Plugins.Get("plugin id");
+
+var configuration = plugin.Configure<BasicAuthPlugin>();
+
+var credentials = configuration.Credentials("consumer id);
+
+await credentials.Create("username", "password");
+```
+
+Each plugin has it's own interface to expose the nescessary api calls and will be documented independently.
