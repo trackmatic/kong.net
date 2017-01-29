@@ -1,6 +1,4 @@
-﻿using Kong.About;
-
-namespace Kong.Model
+﻿namespace Kong.Model
 {
     public class Node
     {

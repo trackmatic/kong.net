@@ -1,6 +1,4 @@
-﻿using Kong.Model;
-
-namespace Kong.About
+﻿namespace Kong.Model
 {
     public class Status
     {

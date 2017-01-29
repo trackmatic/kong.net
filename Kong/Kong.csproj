@@ -57,6 +57,7 @@
     <Compile Include="Model\BasicAuthCredentials.cs" />
     <Compile Include="Model\Consumers.cs" />
     <Compile Include="Exceptions\ApiException.cs" />
+    <Compile Include="Model\DynamicSslPlugin.cs" />
     <Compile Include="Model\HmacAuthPlugin.cs" />
     <Compile Include="Model\HmacAuthCredential.cs" />
     <Compile Include="Model\HmacAuthCredentials.cs" />
@@ -110,7 +111,6 @@
     <Compile Include="Model\RequestSizeLimitingPlugin.cs" />
     <Compile Include="Model\RequestTransformerPlugin.cs" />
     <Compile Include="Model\ResponseTransformerPlugin.cs" />
-    <Compile Include="Model\SslPlugin.cs" />
     <Compile Include="Model\TcpLogPlugin.cs" />
     <Compile Include="Model\UdpLogPlugin.cs" />
     <Compile Include="Model\Api.cs" />
