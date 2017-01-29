@@ -55,6 +55,7 @@
     <Compile Include="KongClientFactory.cs" />
     <Compile Include="Model\BasicAuthCredential.cs" />
     <Compile Include="Model\BasicAuthCredentials.cs" />
+    <Compile Include="Model\BotDetectionPlugin.cs" />
     <Compile Include="Model\Consumers.cs" />
     <Compile Include="Exceptions\ApiException.cs" />
     <Compile Include="Model\DynamicSslPlugin.cs" />
