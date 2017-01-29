@@ -29,16 +29,22 @@ namespace Kong.Sample
 
             var api = client.Apis.Get("google").Result;
 
-            /*var newPlugin = await api.Plugins.Create(new PluginData
+            var newPlugin = await api.Plugins.Create(new PluginData
             {
-                Config = new AclPlugin
+                Config = new CorsPlugin
                 {
-                    Blacklist = new[] {"group1"}
+                    Credentials = true,
+                    ExposedHeaders = new [] { "Authorization"},
+                    Headers = new [] { "Authorization" },
+                    Methods = new [] { "PUT"},
+                    MaxAge = 30,
+                    Origin = "*",
+                    PreflightContinue = false
                 }
-            });*/
+            });
             
 
-            var plugin = await api.Plugins.Get("5a230453-8315-4143-9ef8-3079f5254875");
+            var plugin = await api.Plugins.Get(newPlugin.Id);
 
             //await plugin.Delete();
 
