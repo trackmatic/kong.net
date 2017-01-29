@@ -31,28 +31,20 @@ namespace Kong.Sample
 
             /*var newPlugin = await api.Plugins.Create(new PluginData
             {
-                Config = new Oauth2Plugin
+                Config = new AclPlugin
                 {
-                    HideCredentials = false,
-                    AcceptHttpIfAlreadyTerminated = true,
-                    EnableAuthorizationCode = true,
-                    EnableClientCredentials = true,
-                    EnableImplicitGrant = true,
-                    EnablePasswordGrant = true,
-                    MandatoryScope = false,
-                    Scopes = new [] { "user" },
-                    TokenExpiration = 60000
+                    Blacklist = new[] {"group1"}
                 }
             });*/
             
 
-            var plugin = await api.Plugins.Get("2870ae9d-501d-4639-a32d-476fb0d845f4");
+            var plugin = await api.Plugins.Get("5a230453-8315-4143-9ef8-3079f5254875");
 
             //await plugin.Delete();
 
-            var configuration = plugin.Configure<Oauth2Plugin>();
+            var configuration = plugin.Configure<AclPlugin>();
 
-            //await configuration.Credentials(consumers.Data[0].Id).Create("bla", "blabla", Guid.NewGuid().ToString(), "http://redirect.com");
+            await configuration.Credentials(consumers.Data[0].Id).Create("group1");
 
             var credentials = await configuration.Credentials(consumers.Data[0].Id).List();
 

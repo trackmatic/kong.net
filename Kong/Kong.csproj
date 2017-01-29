@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\AclPluginGroup.cs" />
+    <Compile Include="Model\AclPluginGroups.cs" />
     <Compile Include="Model\Apis.cs" />
     <Compile Include="KongClient.cs" />
     <Compile Include="KongClientFactory.cs" />
