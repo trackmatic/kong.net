@@ -126,7 +126,7 @@ The client library will know which plugin you are trying to create by inspecting
 
 ### Updating a Plugin configuration
 
-Currently to update a plugin configuration you will need to know what type of plugin you are working with. This is in place in order to keep the interface clean and is most use cases you will likely know what plugin you are trying to configure.
+Currently to update a plugin configuration you will need to know what type of plugin you are working with. This is in place in order to keep the interface clean and in most use cases you will likely know the type of the plugin you are trying to configure.
 
 For example, if you wanted to retrieve the basic auth plugin created previously and change a property on it you would need to do the following:
 
