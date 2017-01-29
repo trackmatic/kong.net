@@ -61,6 +61,7 @@
     <Compile Include="Model\JwtAuthCredential.cs" />
     <Compile Include="Model\KeyAuthCredential.cs" />
     <Compile Include="Model\KeyAuthCredentials.cs" />
+    <Compile Include="Model\LdapAuthPlugin.cs" />
     <Compile Include="Slumber\Extensions.cs" />
     <Compile Include="Slumber\IRequestFactory.cs" />
     <Compile Include="Serialization\PluginAttribute.cs" />

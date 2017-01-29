@@ -31,14 +31,25 @@ namespace Kong.Sample
 
             /*var newPlugin = await api.Plugins.Create(new PluginData
             {
-                Config = new HmacAuthPlugin
+                Config = new LdapAuthPlugin
                 {
-                    ClockSkew = 300,
-                    HideCredentials = false
+                    HideCredentials = false,
+                    Attribute = "x",
+                    BaseDn = "x",
+                    CacheTtl = 100,
+                    Keepalive = 60000,
+                    LdapHost = "adsad",
+                    LdapPort = 10,
+                    StartTls = false,
+                    Timeout = 60000,
+                    VerifyLdapHost = false
                 }
             });*/
+            
 
-            var plugin = await api.Plugins.Get("886946bf-7e95-434d-902b-6cad22c501cc");
+            var plugin = await api.Plugins.Get("fd7729f5-4e00-4c62-88ee-741ee4e4f3bd");
+
+            await plugin.Delete();
 
             var configuration = plugin.Configure<HmacAuthPlugin>();
 
