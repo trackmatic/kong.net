@@ -62,6 +62,9 @@
     <Compile Include="Model\KeyAuthCredential.cs" />
     <Compile Include="Model\KeyAuthCredentials.cs" />
     <Compile Include="Model\LdapAuthPlugin.cs" />
+    <Compile Include="Model\Oauth2Application.cs" />
+    <Compile Include="Model\Oauth2Applications.cs" />
+    <Compile Include="Model\Oauth2Plugin.cs" />
     <Compile Include="Slumber\Extensions.cs" />
     <Compile Include="Slumber\IRequestFactory.cs" />
     <Compile Include="Serialization\PluginAttribute.cs" />

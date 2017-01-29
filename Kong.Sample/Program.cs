@@ -31,29 +31,28 @@ namespace Kong.Sample
 
             /*var newPlugin = await api.Plugins.Create(new PluginData
             {
-                Config = new LdapAuthPlugin
+                Config = new Oauth2Plugin
                 {
                     HideCredentials = false,
-                    Attribute = "x",
-                    BaseDn = "x",
-                    CacheTtl = 100,
-                    Keepalive = 60000,
-                    LdapHost = "adsad",
-                    LdapPort = 10,
-                    StartTls = false,
-                    Timeout = 60000,
-                    VerifyLdapHost = false
+                    AcceptHttpIfAlreadyTerminated = true,
+                    EnableAuthorizationCode = true,
+                    EnableClientCredentials = true,
+                    EnableImplicitGrant = true,
+                    EnablePasswordGrant = true,
+                    MandatoryScope = false,
+                    Scopes = new [] { "user" },
+                    TokenExpiration = 60000
                 }
             });*/
             
 
-            var plugin = await api.Plugins.Get("fd7729f5-4e00-4c62-88ee-741ee4e4f3bd");
+            var plugin = await api.Plugins.Get("2870ae9d-501d-4639-a32d-476fb0d845f4");
 
-            await plugin.Delete();
+            //await plugin.Delete();
 
-            var configuration = plugin.Configure<HmacAuthPlugin>();
+            var configuration = plugin.Configure<Oauth2Plugin>();
 
-            await configuration.Credentials(consumers.Data[0].Id).Create("bla", Guid.NewGuid().ToString());
+            //await configuration.Credentials(consumers.Data[0].Id).Create("bla", "blabla", Guid.NewGuid().ToString(), "http://redirect.com");
 
             var credentials = await configuration.Credentials(consumers.Data[0].Id).List();
 
