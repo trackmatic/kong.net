@@ -4,7 +4,7 @@ using Kong.Serialization;
 namespace Kong.Model
 {
     [Plugin("jwt")]
-    public class JwtPlugin : PluginConfiguration
+    public class JwtAuthPlugin : PluginConfiguration
     {
         /// <summary>
         /// Default jwt. A list of querystring parameters that Kong will inspect to retrieve potential JWTs.
@@ -26,13 +26,13 @@ namespace Kong.Model
         /// </summary>
         public bool SecretIsBase64 { get; set; }
 
-        public JwtCredentials Credentials(string consumerId)
+        public JwtAuthCredentials Credentials(string consumerId)
         {
             var requestFactory = RequestFactory.Root.Create("/consumers/{consumer_id}/jwt", new Dictionary<string, string>
             {
                 {"consumer_id", consumerId}
             });
-            return new JwtCredentials(requestFactory);
+            return new JwtAuthCredentials(requestFactory);
         }
     }
 }

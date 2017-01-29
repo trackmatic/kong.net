@@ -10,13 +10,13 @@ namespace Kong.Model
 
         public bool HideCredentials { get; set; }
 
-        public KeyCredentials Credentials(string consumerId)
+        public KeyAuthCredentials Credentials(string consumerId)
         {
             var requestFactory = RequestFactory.Root.Create("/consumers/{consumer_id}/key-auth", new Dictionary<string, string>
             {
                 {"consumer_id", consumerId}
             });
-            return new KeyCredentials(requestFactory);
+            return new KeyAuthCredentials(requestFactory);
         }
     }
 }

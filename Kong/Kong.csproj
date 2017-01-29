@@ -55,9 +55,12 @@
     <Compile Include="Model\BasicAuthCredentials.cs" />
     <Compile Include="Model\Consumers.cs" />
     <Compile Include="Exceptions\ApiException.cs" />
-    <Compile Include="Model\JwtCredential.cs" />
-    <Compile Include="Model\KeyCredential.cs" />
-    <Compile Include="Model\KeyCredentials.cs" />
+    <Compile Include="Model\HmacAuthPlugin.cs" />
+    <Compile Include="Model\HmacAuthCredential.cs" />
+    <Compile Include="Model\HmacAuthCredentials.cs" />
+    <Compile Include="Model\JwtAuthCredential.cs" />
+    <Compile Include="Model\KeyAuthCredential.cs" />
+    <Compile Include="Model\KeyAuthCredentials.cs" />
     <Compile Include="Slumber\Extensions.cs" />
     <Compile Include="Slumber\IRequestFactory.cs" />
     <Compile Include="Serialization\PluginAttribute.cs" />
@@ -94,8 +97,8 @@
     <Compile Include="Model\BasicAuthPlugin.cs" />
     <Compile Include="Model\CorsPlugin.cs" />
     <Compile Include="Model\IpRestrictionPluginconfig.cs" />
-    <Compile Include="Model\JwtCredentials.cs" />
-    <Compile Include="Model\JwtPlugin.cs" />
+    <Compile Include="Model\JwtAuthCredentials.cs" />
+    <Compile Include="Model\JwtAuthPlugin.cs" />
     <Compile Include="Model\KeyAuthPlugin.cs" />
     <Compile Include="Model\RateLimitingPlugin.cs" />
     <Compile Include="Model\RequestSizeLimitingPlugin.cs" />

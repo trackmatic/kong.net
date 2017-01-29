@@ -4,23 +4,23 @@ using Kong.Slumber;
 
 namespace Kong.Model
 {
-    public class KeyCredentials
+    public class KeyAuthCredentials
     {
         private readonly IRequestFactory _requestFactory;
 
-        public KeyCredentials(IRequestFactory requestFactory)
+        public KeyAuthCredentials(IRequestFactory requestFactory)
         {
             _requestFactory = requestFactory;
         }
 
-        public Task<ResourceCollection<KeyCredential>> List()
+        public Task<ResourceCollection<KeyAuthCredential>> List()
         {
-            return _requestFactory.List<ResourceCollection<KeyCredential>>(new Dictionary<string, object>());
+            return _requestFactory.List<ResourceCollection<KeyAuthCredential>>(new Dictionary<string, object>());
         }
 
-        public Task<KeyCredential> Create(string key)
+        public Task<KeyAuthCredential> Create(string key)
         {
-            return _requestFactory.Post<KeyCredential>(new
+            return _requestFactory.Post<KeyAuthCredential>(new
             {
                 key
             });

@@ -4,23 +4,23 @@ using Kong.Slumber;
 
 namespace Kong.Model
 {
-    public class JwtCredentials
+    public class JwtAuthCredentials
     {
         private readonly IRequestFactory _requestFactory;
 
-        public JwtCredentials(IRequestFactory requestFactory)
+        public JwtAuthCredentials(IRequestFactory requestFactory)
         {
             _requestFactory = requestFactory;
         }
 
-        public Task<ResourceCollection<JwtCredential>> List()
+        public Task<ResourceCollection<JwtAuthCredential>> List()
         {
-            return _requestFactory.List<ResourceCollection<JwtCredential>>(new Dictionary<string, object>());
+            return _requestFactory.List<ResourceCollection<JwtAuthCredential>>(new Dictionary<string, object>());
         }
 
-        public Task<JwtCredential> Create(string key, string secret, string algorithm = "HS256", string rsaPublicKey = null)
+        public Task<JwtAuthCredential> Create(string key, string secret, string algorithm = "HS256", string rsaPublicKey = null)
         {
-            return _requestFactory.Post<JwtCredential>(new
+            return _requestFactory.Post<JwtAuthCredential>(new
             {
                 key,
                 rsa_public_key = rsaPublicKey,

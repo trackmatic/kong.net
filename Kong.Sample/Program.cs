@@ -29,11 +29,20 @@ namespace Kong.Sample
 
             var api = client.Apis.Get("google").Result;
 
-            var plugin = await api.Plugins.Get("78fb1ef2-5a1f-44f3-893f-48f3f234a267");
+            /*var newPlugin = await api.Plugins.Create(new PluginData
+            {
+                Config = new HmacAuthPlugin
+                {
+                    ClockSkew = 300,
+                    HideCredentials = false
+                }
+            });*/
 
-            var configuration = plugin.Configure<KeyAuthPlugin>();
+            var plugin = await api.Plugins.Get("886946bf-7e95-434d-902b-6cad22c501cc");
 
-            await configuration.Credentials(consumers.Data[0].Id).Create(Guid.NewGuid().ToString());
+            var configuration = plugin.Configure<HmacAuthPlugin>();
+
+            await configuration.Credentials(consumers.Data[0].Id).Create("bla", Guid.NewGuid().ToString());
 
             var credentials = await configuration.Credentials(consumers.Data[0].Id).List();
 
