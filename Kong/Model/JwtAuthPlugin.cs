@@ -3,6 +3,9 @@ using Kong.Serialization;
 
 namespace Kong.Model
 {
+    /// <summary>
+    /// Verify requests containing HS256 or RS256 signed JSON Web Tokens (as specified in RFC 7519). Each of your Consumers will have JWT credentials (public and secret keys) which must be used to sign their JWTs. A token can then be passed through the Authorization header or in the request's URI and Kong will either proxy the request to your upstream services if the token's signature is verified, or discard the request if not. Kong can also perform verifications on some of the registered claims of RFC 7519 (exp and nbf).
+    /// </summary>
     [Plugin("jwt")]
     public class JwtAuthPlugin : PluginConfiguration
     {
