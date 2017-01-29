@@ -28,17 +28,18 @@ namespace Kong.Sample
 
 
             var api = client.Apis.Get("google").Result;
-            
 
-            var plugin = await api.Plugins.Get("f5a16ae1-ee01-47d6-8fb4-5f7365e36cde");
+            var plugin = await api.Plugins.Get("78fb1ef2-5a1f-44f3-893f-48f3f234a267");
 
-            var configuration = plugin.Configure<JwtPlugin>();
+            var configuration = plugin.Configure<KeyAuthPlugin>();
+
+            await configuration.Credentials(consumers.Data[0].Id).Create(Guid.NewGuid().ToString());
 
             var credentials = await configuration.Credentials(consumers.Data[0].Id).List();
 
-            foreach (var jwtCredential in credentials.Data)
+            foreach (var item in credentials.Data)
             {
-                await configuration.Credentials(consumers.Data[0].Id).Delete(jwtCredential.Id);
+                await configuration.Credentials(consumers.Data[0].Id).Delete(item.Id);
             }
 
             //var credential = await credentials.Create("a36c3049b36249a3c9f8891cb127243c", "e71829c351aa4242c2719cbfbe671c09");
