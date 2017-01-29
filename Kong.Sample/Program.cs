@@ -31,15 +31,9 @@ namespace Kong.Sample
 
             var newPlugin = await api.Plugins.Create(new PluginData
             {
-                Config = new CorsPlugin
+                Config = new IpRestrictionPlugin
                 {
-                    Credentials = true,
-                    ExposedHeaders = new [] { "Authorization"},
-                    Headers = new [] { "Authorization" },
-                    Methods = new [] { "PUT"},
-                    MaxAge = 30,
-                    Origin = "*",
-                    PreflightContinue = false
+                    Blacklist = new [] { "10.10.0.10"}
                 }
             });
             

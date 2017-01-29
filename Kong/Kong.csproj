@@ -102,7 +102,7 @@
     <Compile Include="Model\AclPlugin.cs" />
     <Compile Include="Model\BasicAuthPlugin.cs" />
     <Compile Include="Model\CorsPlugin.cs" />
-    <Compile Include="Model\IpRestrictionPluginconfig.cs" />
+    <Compile Include="Model\IpRestrictionPlugin.cs" />
     <Compile Include="Model\JwtAuthCredentials.cs" />
     <Compile Include="Model\JwtAuthPlugin.cs" />
     <Compile Include="Model\KeyAuthPlugin.cs" />
