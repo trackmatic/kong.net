@@ -173,7 +173,7 @@ namespace Kong.Slumber
                 return;
             }
             var content = response.Exception.GetContent<dynamic>(_client.Configuration.Serialization.CreateDeserializer(response));
-            throw new ApiException(content, response.Exception);
+            throw new ApiException(response.StatusCode, content, response.Exception);
         }
     }
 } 

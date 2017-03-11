@@ -20,6 +20,8 @@ namespace Kong.Sample
 
             var client = factory.Create();
 
+            var consumer = await client.Consumers.Get("1");
+
             var apis = await client.Apis.List();
 
             var api = await client.Apis.Get("api-v2-account-auth");
