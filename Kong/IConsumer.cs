@@ -11,6 +11,7 @@ namespace Kong
         string Username { get; set; }
 
         Task Delete();
+
         Task<IConsumer> Save();
     }
 }

@@ -38,5 +38,7 @@ namespace Kong
         public IApis Apis => new Apis(_requestFactory.Create("/apis"));
 
         public IConsumers Consumers => new Consumers(_requestFactory.Create("/consumers"));
+
+        public IRequestFactory RequestFactory => _requestFactory;
     }
 }

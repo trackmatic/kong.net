@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Kong.Model;
+using Kong.Slumber;
 
 namespace Kong
 {
@@ -36,5 +37,7 @@ namespace Kong
         /// The Consumer object represents a consumer - or a user - of an API. You can either rely on Kong as the primary datastore, or you can map the consumer list with your database to keep consistency between Kong and your existing primary datastore.
         /// </summary>
         IConsumers Consumers { get; }
+
+        IRequestFactory RequestFactory { get; }
     }
 }

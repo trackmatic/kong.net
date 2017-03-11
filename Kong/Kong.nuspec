@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Kong</id>
-    <version>0.1.2</version>
+    <version>0.1.3</version>
     <title>Kong Api Gateway Rest Client</title>
     <authors>Trackmatic Solutions (Pty) Ltd</authors>
     <owners>Trackmatic Solutions (Pty) Ltd</owners>
