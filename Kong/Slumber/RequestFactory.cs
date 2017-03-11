@@ -105,17 +105,7 @@ namespace Kong.Slumber
                 .Build();
             return Execute(request);
         }
-
-        public IRequestFactory Substitute(string segment, string url)
-        {
-            return Substitue(segment, url, new Dictionary<string, string>());
-        }
-
-        public IRequestFactory Substitue(string segment, string url, IDictionary<string, string> parameters)
-        {
-            return new RequestFactory(this, _client, _baseUrl.Replace(segment, url), Merge(parameters));
-        }
-
+        
         public IRequestFactory Create(string url)
         {
             return Create(url, new Dictionary<string, string>());

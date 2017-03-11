@@ -20,11 +20,15 @@ namespace Kong.Sample
 
             var client = factory.Create();
 
-            var node = await client.Node();
-
-            var consumers = await client.Consumers.List();
-
             var apis = await client.Apis.List();
+
+            var api = await client.Apis.Get("api-v2-account");
+
+            await api.Plugins.Create(new PluginData
+            {
+                Config = new JwtAuthPlugin()
+            });
+
         }
     }
 }

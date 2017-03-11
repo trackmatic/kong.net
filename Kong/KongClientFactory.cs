@@ -1,5 +1,4 @@
 ﻿using System;
-using Kong.Model;
 using Kong.Serialization;
 using Kong.Slumber;
 using Newtonsoft.Json;

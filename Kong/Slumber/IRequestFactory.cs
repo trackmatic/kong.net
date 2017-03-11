@@ -18,6 +18,5 @@ namespace Kong.Slumber
         IRequestFactory Create(string url, IDictionary<string, string> parameters);
         IRequestFactory Parent { get; }
         IRequestFactory Root { get; }
-        IRequestFactory Substitute(string segment, string url);
     }
 }
