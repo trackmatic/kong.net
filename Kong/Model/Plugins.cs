@@ -21,6 +21,14 @@ namespace Kong.Model
             return response;
         }
 
+        public async Task<IPlugin> Put(PluginData data)
+        {
+            var response = await _requestFactory.Put<Plugin>(data).ConfigureAwait(false);
+            var requestFactory = _requestFactory.Create("/{plugin_id}", new Dictionary<string, string> { { "plugin_id", response.Id } });
+            response.Configure(requestFactory);
+            return response;
+        }
+
         public async Task<IPlugin> Get(string id)
         {
             var requestFactory = _requestFactory.Create("/{plugin_id}", new Dictionary<string, string> { { "plugin_id", id } });

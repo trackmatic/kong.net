@@ -12,6 +12,7 @@ namespace Kong
             int size = 100,
             int? offset = 0);
         Task<IPlugin> Create(PluginData data);
+        Task<IPlugin> Put(PluginData data);
         Task<IPlugin> Get(string id);
         Task<dynamic> Schema(string id);
     }

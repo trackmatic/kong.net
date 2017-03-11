@@ -22,12 +22,17 @@ namespace Kong.Sample
 
             var apis = await client.Apis.List();
 
-            var api = await client.Apis.Get("api-v2-account");
+            var api = await client.Apis.Get("api-v2-account-auth");
 
-            await api.Plugins.Create(new PluginData
+            await api.Plugins.Put(new PluginData
             {
-                Config = new JwtAuthPlugin()
+                Config = new CorsPlugin
+                {
+                    Credentials = true,
+                    ExposedHeaders = new [] {"Authorization"}
+                }
             });
+
 
         }
     }
